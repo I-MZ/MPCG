@@ -7,6 +7,8 @@ public class DeckManager : MonoBehaviour
 {
     public List<CardData> deck = new List<CardData>();
 
+    public HandManager handManager;
+
     void Start()
     {
         DrawCard();
@@ -23,6 +25,8 @@ public class DeckManager : MonoBehaviour
         CardData drawCard = deck[0];
 
         Debug.Log("Draw : " + drawCard.cardName);
+
+        handManager.AddCard(drawCard);
 
         deck.RemoveAt(0);
     }

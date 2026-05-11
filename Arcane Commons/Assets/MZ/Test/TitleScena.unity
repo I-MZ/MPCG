@@ -371,6 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeckManager
   deck:
   - {fileID: 11400000, guid: 6cdcaca2e47a08446a8a816d8afef74d, type: 2}
+  handManager: {fileID: 1605853143}
 --- !u!4 &900712308
 Transform:
   m_ObjectHideFlags: 0
@@ -395,8 +396,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1605853142}
+  - component: {fileID: 1605853143}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: HandManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -417,6 +419,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1605853143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605853141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8988e38979e9a49841c4ef558d9eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandManager
+  hand: []
 --- !u!1 &1902325757
 GameObject:
   m_ObjectHideFlags: 0
