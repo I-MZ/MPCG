@@ -5,9 +5,9 @@ public class CardData : ScriptableObject
 {
     public string cardName;
 
-    public int attack;
+    public int attack;  //UŒ‚—Í
 
-    public int defense;
+    public int defense; //–hŒä—Í
 
-    public int cost;
+    public int cost;    //ƒRƒXƒg
 }
