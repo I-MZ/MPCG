@@ -25,11 +25,19 @@ public class CardUI : MonoBehaviour
     }
 
     public void UseCard()
+{
+    if (TurnManager.Instance.canUseCard == false)
     {
-        Debug.Log(cardData.cardName + " を使用");
-
-        playerHealth.TakeDamage(cardData.attack);
-
-        Destroy(gameObject);
+        Debug.Log("このターンはもう使えない");
+        return;
     }
+
+    TurnManager.Instance.canUseCard = false;
+
+    Debug.Log(cardData.cardName + " を使用");
+
+    playerHealth.TakeDamage(cardData.attack);
+
+    Destroy(gameObject);
+}
 }
