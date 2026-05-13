@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8383028962848633606}
   - component: {fileID: 1423337000745021212}
   - component: {fileID: 4973682884414187230}
+  - component: {fileID: 1039436246249406324}
   m_Layer: 5
   m_Name: CardUI
   m_TagString: Untagged
@@ -121,6 +122,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1039436246249406324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986235600540455161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21bfcbac8305f4342bdc9a5beb0e59e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardUI
+  cardData: {fileID: 11400000, guid: 6cdcaca2e47a08446a8a816d8afef74d, type: 2}
+  text: {fileID: 3425272499650225978}
 --- !u!1 &6345503100744039969
 GameObject:
   m_ObjectHideFlags: 0

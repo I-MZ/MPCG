@@ -18,8 +18,8 @@ public class HandManager : MonoBehaviour
 
         GameObject cardObject = Instantiate(cardPrefab, handArea);
 
-        TMP_Text text = cardObject.GetComponentInChildren<TMP_Text>();
+        CardUI cardUI = cardObject.GetComponent<CardUI>();
 
-        text.text = card.cardName;
+        cardUI.Setup(card);
     }
 }

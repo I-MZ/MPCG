@@ -8,12 +8,12 @@ public class DeckManager : MonoBehaviour
     public List<CardData> deck = new List<CardData>();
 
     public HandManager handManager;
-
+    /* ドローボタンの為にコメントアウト中
     void Start()
     {
-        DrawCard();
+        DrawCard();//デッキからカードをドローする
     }
-
+    */
     public void DrawCard()
     {
         if (deck.Count <= 0)
