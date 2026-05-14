@@ -8,14 +8,12 @@ public class CardData : ScriptableObject
     public string cardName;
 
     public int attack;  //攻撃力
-
     public int defense; //防御力
-
     public int cost;    //コスト
 
     public CardType cardType;
 
-    //public EffectType effectType;カードタイプ作ったけど一旦削除
+    public EffectType effectType;
+    public int value;
 
-    //public int value;
 }

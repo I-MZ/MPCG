@@ -41,5 +41,5 @@ public class CardUI : MonoBehaviour
     playerHealth.TakeDamage(cardData.attack);
 
     Destroy(gameObject);
-}
+    }
 }
