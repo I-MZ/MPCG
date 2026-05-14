@@ -12,4 +12,10 @@ public class CardData : ScriptableObject
     public int defense; //防御力
 
     public int cost;    //コスト
+
+    public CardType cardType;
+
+    //public EffectType effectType;カードタイプ作ったけど一旦削除
+
+    //public int value;
 }

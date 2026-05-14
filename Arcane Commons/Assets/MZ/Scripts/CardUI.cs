@@ -1,3 +1,5 @@
+//カードの使用制限とかのコード
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
