@@ -10,11 +10,11 @@ public class CardUI : MonoBehaviour
 
     public TMP_Text text;
 
-    private PlayerHealth playerHealth;
+    private Player playerHealth;
 
     void Start()
     {
-        playerHealth = FindObjectOfType<PlayerHealth>();
+        playerHealth = FindObjectOfType<Player>();
 
         GetComponent<Button>().onClick.AddListener(UseCard);
     }
