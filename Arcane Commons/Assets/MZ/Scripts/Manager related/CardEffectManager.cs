@@ -1,3 +1,5 @@
+//カードを見て処理を分岐するコード
+
 using UnityEngine;
 
 public class CardEffectManager : MonoBehaviour
@@ -13,7 +15,7 @@ public class CardEffectManager : MonoBehaviour
     {
         switch (card.effectType)
         {
-            case EffectType.Attack:
+            case EffectType.Damage:
 
                 target.TakeDamage(card.value);
 
