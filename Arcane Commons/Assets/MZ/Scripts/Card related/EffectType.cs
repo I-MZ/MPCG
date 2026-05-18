@@ -2,9 +2,27 @@
 
 using UnityEngine;
 
+//public enum EffectType
+//{
+//    Damage, //ダメージ
+//    Heal,   //回復
+//    Draw　  //ドロー
+//}
+
 public enum EffectType
 {
-    Damage, //ダメージ
-    Heal,   //回復
-    Draw　  //ドロー
+    None,
+
+    Attack,
+    Heal,
+    Draw,
+
+
+    Shield,
+
+    DamageAll,
+    Summon,
+
+    Trap,
+
 }

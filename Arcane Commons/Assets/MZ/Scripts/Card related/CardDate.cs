@@ -2,18 +2,42 @@
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewCard", menuName = "Card Game/Card")]
+[CreateAssetMenu(fileName = "New Card", menuName = "Card Game/Card")]
 public class CardData : ScriptableObject
 {
+    [Header("基本情報")]
     public string cardName;
 
-    public int attack;  //攻撃力
-    public int defense; //防御力
-    public int cost;    //コスト
+    [TextArea]
+    public string description;
 
-    public CardType cardType;
+    [Header("見た目")]
+    public Sprite cardImage;
 
+    [Header("コスト")]
+    public int cost;
+
+    [Header("効果")]
     public EffectType effectType;
-    public int value;
 
+    public int value;
 }
+
+//ダメージを別規格で扱ってみるから一旦保留
+//using UnityEngine;
+
+//[CreateAssetMenu(fileName = "NewCard", menuName = "Card Game/Card")]
+//public class CardData : ScriptableObject
+//{
+//    public string cardName;
+
+//    public int attack;  //攻撃力
+//    public int defense; //防御力
+//    public int cost;    //コスト
+
+//    public CardType cardType;
+
+//    public EffectType effectType;
+//    public int value;
+
+//}

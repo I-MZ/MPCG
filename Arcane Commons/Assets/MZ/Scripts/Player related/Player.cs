@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     [Header("手札")]
     public List<CardData> hand = new List<CardData>();
 
-    // ダメージを受ける
+    //ダメージを受ける
     public void TakeDamage(int damage)
     {
         hp -= damage;
@@ -28,7 +28,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    // カードを引く
+    //回復
+    public void Heal(int amount)
+    {
+        hp += amount;
+
+        Debug.Log(playerName + " は " + amount + " 回復");
+
+        Debug.Log(playerName + " HP : " + hp);
+    }
+
+    //カードを引く
     public void DrawCard()
     {
         if (deck.Count <= 0)
