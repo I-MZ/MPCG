@@ -4,21 +4,50 @@ public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance;
 
+    [Header("カード使用制限")]
     public bool canUseCard = true;
 
-    private int turn = 1;
+    [Header("プレイヤー")]
+    public Player player;
 
-    void Awake()
+    [Header("敵")]
+    public Player enemyPlayer;
+
+    private void Awake()
     {
         Instance = this;
     }
 
-    public void EndTurn()
+    private void Start()
     {
-        turn++;
+        StartTurn();
+    }
+
+    // ターン開始
+    public void StartTurn()
+    {
+        Debug.Log("プレイヤーターン開始");
 
         canUseCard = true;
 
-        Debug.Log("ターン : " + turn);
+        DeckManager.Instance.DrawCard(player);
+    }
+
+    // ターン終了
+    public void EndTurn()
+    {
+        Debug.Log("プレイヤーターン終了");
+
+        EnemyTurn();
+    }
+
+    // 敵ターン
+    void EnemyTurn()
+    {
+        Debug.Log("敵ターン");
+
+        player.TakeDamage(1);
+
+        StartTurn();
     }
 }

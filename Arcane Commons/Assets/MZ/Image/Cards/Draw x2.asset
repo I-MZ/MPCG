@@ -17,4 +17,4 @@ MonoBehaviour:
   cardImage: {fileID: 0}
   cost: 1
   effectType: 3
-  value: 3
+  value: 2

@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log(currentPlayer.playerName + " のターン開始");
 
-        currentPlayer.DrawCard();
+        DeckManager.Instance.DrawCard(currentPlayer);
     }
 
     public void EndTurn()

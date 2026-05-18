@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [Header("HP")]
     public int hp = 20;
 
-    [Header("デッキ")]
+    [Header("所持デッキ")]
     public List<CardData> deck = new List<CardData>();
 
     [Header("手札")]
@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 
         Debug.Log(playerName + " HP : " + hp);
 
+        //敗北
         if (hp <= 0)
         {
             Debug.Log(playerName + " は敗北しました");
@@ -29,30 +30,9 @@ public class Player : MonoBehaviour
     }
 
     //回復
-    public void Heal(int amount)
+    public void Heal(int value)
     {
-        hp += amount;
-
-        Debug.Log(playerName + " は " + amount + " 回復");
-
-        Debug.Log(playerName + " HP : " + hp);
-    }
-
-    //カードを引く
-    public void DrawCard()
-    {
-        if (deck.Count <= 0)
-        {
-            Debug.Log(playerName + " のデッキ切れ");
-            return;
-        }
-
-        CardData drawCard = deck[0];
-
-        hand.Add(drawCard);
-
-        deck.RemoveAt(0);
-
-        Debug.Log(playerName + " は " + drawCard.cardName + " を引いた");
+        hp += value;
+        Debug.Log(playerName + " が " + value + " 回復");
     }
 }

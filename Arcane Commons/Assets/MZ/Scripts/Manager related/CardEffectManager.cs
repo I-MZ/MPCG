@@ -33,7 +33,7 @@ public class CardEffectManager : MonoBehaviour
 
                 for (int i = 0; i < card.value; i++)
                 {
-                    user.DrawCard();
+                    DeckManager.Instance.DrawCard(user);
                 }
 
                 Debug.Log(user.playerName + " ‚ªƒhƒ[");
