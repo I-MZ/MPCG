@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0fa5854287e333459188399a38100ce, type: 3}
-  m_Name: Spear
+  m_Name: Draw x2
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardName: Spear
-  attack: 2
-  defense: 0
+  cardName: Draw x2
+  description: 
+  cardImage: {fileID: 0}
   cost: 1
+  effectType: 3
+  value: 3

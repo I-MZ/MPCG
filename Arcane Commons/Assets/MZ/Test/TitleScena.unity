@@ -148,7 +148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0da96a186818b4b95bd3a66a943a87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  playerName: 
   hp: 20
+  deck: []
+  hand: []
 --- !u!4 &16053724
 Transform:
   m_ObjectHideFlags: 0
@@ -1280,6 +1283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1902325758}
   - component: {fileID: 1902325759}
+  - component: {fileID: 1902325760}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1315,6 +1319,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnManager
   canUseCard: 1
+--- !u!114 &1902325760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902325757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1487ecaa2ae97324ca47642221a09a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardEffectManager
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

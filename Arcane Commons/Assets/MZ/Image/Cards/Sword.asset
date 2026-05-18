@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   cardName: Sword
-  attack: 1
-  defense: 1
+  description: 
+  cardImage: {fileID: 0}
   cost: 1
+  effectType: 1
+  value: 3

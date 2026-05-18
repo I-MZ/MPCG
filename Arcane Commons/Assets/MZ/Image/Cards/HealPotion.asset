@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0fa5854287e333459188399a38100ce, type: 3}
-  m_Name: Hammer
+  m_Name: HealPotion
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardName: Hammer
-  attack: 5
-  defense: 0
-  cost: 3
+  cardName: HealPotion
+  description: 
+  cardImage: {fileID: 0}
+  cost: 1
+  effectType: 2
+  value: 3
