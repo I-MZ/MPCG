@@ -1,3 +1,5 @@
+//「そのプレイヤー自身の情報」
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +16,9 @@ public class Player : MonoBehaviour
 
     [Header("手札")]
     public List<CardData> hand = new List<CardData>();
+
+    [Header("手札UI")]
+    public Transform handArea;
 
     //ダメージを受ける
     public void TakeDamage(int damage)

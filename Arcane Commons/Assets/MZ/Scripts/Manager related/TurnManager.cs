@@ -1,4 +1,7 @@
+//ターン進行を管理するコード
+
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class TurnManager : MonoBehaviour
 {
@@ -23,7 +26,7 @@ public class TurnManager : MonoBehaviour
         StartTurn();
     }
 
-    // ターン開始
+    //ターン開始
     public void StartTurn()
     {
         Debug.Log("プレイヤーターン開始");
@@ -33,7 +36,7 @@ public class TurnManager : MonoBehaviour
         DeckManager.Instance.DrawCard(player);
     }
 
-    // ターン終了
+    //ターン終了
     public void EndTurn()
     {
         Debug.Log("プレイヤーターン終了");
@@ -41,12 +44,12 @@ public class TurnManager : MonoBehaviour
         EnemyTurn();
     }
 
-    // 敵ターン
+    //敵ターン(動作確認用・多分NPC用になる)
     void EnemyTurn()
     {
         Debug.Log("敵ターン");
 
-        player.TakeDamage(1);
+        DeckManager.Instance.DrawCard(enemyPlayer);
 
         StartTurn();
     }

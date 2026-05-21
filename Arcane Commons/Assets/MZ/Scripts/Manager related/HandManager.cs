@@ -22,6 +22,6 @@ public class HandManager : MonoBehaviour
 
         CardUI cardUI = cardObject.GetComponent<CardUI>();
 
-        cardUI.Setup(card);
+        //cardUI.Setup(card);//エラーが出てるから一旦コメントアウト
     }
 }

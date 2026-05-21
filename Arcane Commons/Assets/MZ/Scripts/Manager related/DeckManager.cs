@@ -16,8 +16,9 @@ public class DeckManager : MonoBehaviour
     [Header("カードプレハブ")]
     public GameObject cardPrefab;
 
-    [Header("手札表示場所")]
-    public Transform handArea;
+    //手札表示をプレイヤーcs側に任せてみてるから一旦コメントアウト
+    //[Header("手札表示場所")]
+    //public Transform handArea;
 
     private void Awake()
     {
@@ -89,53 +90,20 @@ public class DeckManager : MonoBehaviour
         //デッキから削除
         battleDeck.RemoveAt(0);
 
-        Debug.Log(
-            targetPlayer.playerName +
-            " は " +
-            drawCard.cardName +
-            " を引いた"
+        Debug.Log
+        (
+            targetPlayer.playerName + "は" 
+            +drawCard.cardName +"を引いた"
         );
 
         //UI生成
         GameObject cardObj =
-            Instantiate(cardPrefab, handArea);
+          //Instantiate(cardPrefab, handArea);  /新しいのを作ったから一旦コメントアウト
+            Instantiate(cardPrefab, targetPlayer.handArea);
 
         CardUI cardUI =
             cardObj.GetComponent<CardUI>();
 
-        cardUI.Setup(drawCard);
+        cardUI.Setup(drawCard, targetPlayer);
     }
 }
-
-
-//using System.Collections.Generic;
-//using UnityEngine;
-
-//public class DeckManager : MonoBehaviour
-//{
-//    public List<CardData> deck = new List<CardData>();
-
-//    public HandManager handManager;
-//    /* ドローボタンの為にコメントアウト中
-//    void Start()
-//    {
-//        DrawCard();//デッキからカードをドローする
-//    }
-//    */
-//    public void DrawCard()
-//    {
-//        if (deck.Count <= 0)
-//        {
-//            Debug.Log("Deck Empty");
-//            return;
-//        }
-
-//        CardData drawCard = deck[0];
-
-//        Debug.Log("Draw : " + drawCard.cardName);
-
-//        handManager.AddCard(drawCard);
-
-//        deck.RemoveAt(0);
-//    }
-//}

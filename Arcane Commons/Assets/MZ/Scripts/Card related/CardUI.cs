@@ -7,33 +7,49 @@ using UnityEngine.UI;
 public class CardUI : MonoBehaviour
 {
     public CardData cardData;
+
     public TMP_Text text;
-    private Player player;
+
+    // このカードの持ち主
+    private Player ownerPlayer;
 
     void Start()
     {
-        player = FindObjectOfType<Player>();
         GetComponent<Button>().onClick.AddListener(UseCard);
     }
 
-    public void Setup(CardData card)
+    // カード情報セット
+    public void Setup(CardData card, Player player)
     {
         cardData = card;
+
+        ownerPlayer = player;
+
         text.text = card.cardName;
     }
 
+    // カード使用
     public void UseCard()
     {
+        // 使用制限
         if (TurnManager.Instance.canUseCard == false)
         {
             Debug.Log("このターンはもう使えない");
+
             return;
         }
 
         TurnManager.Instance.canUseCard = false;
 
         Debug.Log(cardData.cardName + " を使用");
-        CardEffectManager.Instance.UseCardEffect(cardData, player, player);
+
+        // 効果発動
+        CardEffectManager.Instance.UseCardEffect(
+        cardData,
+        ownerPlayer,
+        TurnManager.Instance.enemyPlayer
+        );
+
         Destroy(gameObject);
     }
 }
