@@ -151,11 +151,10 @@ MonoBehaviour:
   playerName: Player1
   hp: 20
   deck:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 6cdcaca2e47a08446a8a816d8afef74d, type: 2}
+  - {fileID: 11400000, guid: d86896b153f2c4147a0085c69665b420, type: 2}
+  - {fileID: 11400000, guid: 6cdcaca2e47a08446a8a816d8afef74d, type: 2}
+  - {fileID: 11400000, guid: d86896b153f2c4147a0085c69665b420, type: 2}
   hand: []
 --- !u!4 &16053724
 Transform:
@@ -727,7 +726,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   playerName: Player2
   hp: 20
-  deck: []
+  deck:
+  - {fileID: 11400000, guid: 2aa7b2b18104ff34b869f5f44bc3ae6b, type: 2}
+  - {fileID: 11400000, guid: fbd30fd194434364aa61319c2b135683, type: 2}
+  - {fileID: 11400000, guid: 2aa7b2b18104ff34b869f5f44bc3ae6b, type: 2}
+  - {fileID: 11400000, guid: fbd30fd194434364aa61319c2b135683, type: 2}
   hand: []
 --- !u!4 &841340459
 Transform:
@@ -774,9 +777,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeckManager
   battleDeck: []
-  players: []
-  cardPrefab: {fileID: 0}
-  handArea: {fileID: 0}
+  players:
+  - {fileID: 16053723}
+  - {fileID: 841340458}
+  cardPrefab: {fileID: 1986235600540455161, guid: 4d6ea13c02b4bc14ebe515177ac2cb53, type: 3}
+  handArea: {fileID: 90686854}
 --- !u!4 &900712308
 Transform:
   m_ObjectHideFlags: 0
