@@ -60,6 +60,12 @@ public class CardUI : MonoBehaviour
             TurnManager.Instance.GetEnemyPlayer()
         );
 
+        // èD‚©‚çíœ
+        ownerPlayer.hand.Remove(cardData);
+
+        Debug.Log(cardData.cardName + " ‚ğèD‚©‚çíœ");
+
+        // UIíœ
         Destroy(gameObject);
     }
 }
