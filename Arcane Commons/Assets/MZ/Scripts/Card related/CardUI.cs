@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class CardUI : MonoBehaviour
 {
+    //カード情報
     public CardData cardData;
 
+    //カード名表示
     public TMP_Text text;
 
-    // このカードの持ち主
+    //このカードを持っているプレイヤー
     private Player ownerPlayer;
 
     void Start()
@@ -18,7 +20,7 @@ public class CardUI : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(UseCard);
     }
 
-    // カード情報セット
+    //カード情報セット
     public void Setup(CardData card, Player player)
     {
         cardData = card;
@@ -28,10 +30,18 @@ public class CardUI : MonoBehaviour
         text.text = card.cardName;
     }
 
-    // カード使用
+    //カード使用
     public void UseCard()
     {
-        // 使用制限
+        //自分のターンじゃない
+        if (ownerPlayer != TurnManager.Instance.currentPlayer)
+        {
+            Debug.Log("相手ターンなので使えない");
+
+            return;
+        }
+
+        //カード使用制限
         if (TurnManager.Instance.canUseCard == false)
         {
             Debug.Log("このターンはもう使えない");
@@ -43,11 +53,11 @@ public class CardUI : MonoBehaviour
 
         Debug.Log(cardData.cardName + " を使用");
 
-        // 効果発動
+        //カード効果発動
         CardEffectManager.Instance.UseCardEffect(
-        cardData,
-        ownerPlayer,
-        TurnManager.Instance.enemyPlayer
+            cardData,
+            ownerPlayer,
+            TurnManager.Instance.GetEnemyPlayer()
         );
 
         Destroy(gameObject);

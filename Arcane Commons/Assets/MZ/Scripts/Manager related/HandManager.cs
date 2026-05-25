@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class HandManager : MonoBehaviour
 {
+    //この手札の持ち主
+    public Player ownerPlayer;
+
     public List<CardData> hand = new List<CardData>();
 
     public GameObject cardPrefab;
@@ -18,10 +21,13 @@ public class HandManager : MonoBehaviour
 
         Debug.Log(card.cardName + " を手札に追加");
 
-        GameObject cardObject = Instantiate(cardPrefab, handArea);
+        GameObject cardObject =
+            Instantiate(cardPrefab, handArea);
 
-        CardUI cardUI = cardObject.GetComponent<CardUI>();
+        CardUI cardUI =
+            cardObject.GetComponent<CardUI>();
 
-        //cardUI.Setup(card);//エラーが出てるから一旦コメントアウト
+        // Player情報も渡す
+        cardUI.Setup(card, ownerPlayer);
     }
 }

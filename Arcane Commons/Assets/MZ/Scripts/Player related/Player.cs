@@ -1,4 +1,4 @@
-//「そのプレイヤー自身の情報」
+//そのプレイヤー自身の情報を管理するコード
 
 using System.Collections.Generic;
 using UnityEngine;

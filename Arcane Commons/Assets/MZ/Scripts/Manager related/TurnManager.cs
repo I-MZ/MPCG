@@ -1,7 +1,6 @@
 //ターン進行を管理するコード
 
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class TurnManager : MonoBehaviour
 {
@@ -11,10 +10,12 @@ public class TurnManager : MonoBehaviour
     public bool canUseCard = true;
 
     [Header("プレイヤー")]
-    public Player player;
+    public Player player1;
 
-    [Header("敵")]
-    public Player enemyPlayer;
+    public Player player2;
+
+    [Header("現在のターンプレイヤー")]
+    public Player currentPlayer;
 
     private void Awake()
     {
@@ -23,34 +24,60 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
+        // 最初はPlayer1ターン
+        currentPlayer = player1;
+
         StartTurn();
     }
 
-    //ターン開始
+    // ターン開始
     public void StartTurn()
     {
-        Debug.Log("プレイヤーターン開始");
+        Debug.Log(currentPlayer.playerName + " のターン開始");
 
         canUseCard = true;
 
-        DeckManager.Instance.DrawCard(player);
+        // 現在ターンのプレイヤーがドロー
+        DeckManager.Instance.DrawCard(currentPlayer);
     }
 
-    //ターン終了
+    // ターン終了
     public void EndTurn()
     {
-        Debug.Log("プレイヤーターン終了");
+        Debug.Log(currentPlayer.playerName + " のターン終了");
 
-        EnemyTurn();
-    }
+        canUseCard = false;
 
-    //敵ターン(動作確認用・多分NPC用になる)
-    void EnemyTurn()
-    {
-        Debug.Log("敵ターン");
-
-        DeckManager.Instance.DrawCard(enemyPlayer);
+        ChangeTurn();
 
         StartTurn();
+    }
+
+    // ターン変更
+    void ChangeTurn()
+    {
+        // Player1 → Player2
+        if (currentPlayer == player1)
+        {
+            currentPlayer = player2;
+        }
+        // Player2 → Player1
+        else
+        {
+            currentPlayer = player1;
+        }
+    }
+
+    // 現在ターンプレイヤーの敵を取得
+    public Player GetEnemyPlayer()
+    {
+        if (currentPlayer == player1)
+        {
+            return player2;
+        }
+        else
+        {
+            return player1;
+        }
     }
 }
