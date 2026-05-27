@@ -1,5 +1,6 @@
 //そのプレイヤー自身の情報を管理するコード
 
+using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ public class Player : MonoBehaviour
 
     [Header("HP")]
     public int hp = 20;
+
+    [Header("HP表示")]
+    public TMP_Text hpText;
 
     [Header("所持デッキ")]
     public List<CardData> deck = new List<CardData>();
@@ -27,6 +31,8 @@ public class Player : MonoBehaviour
 
         Debug.Log(playerName + " HP : " + hp);
 
+        UpdateHPUI();
+
         //敗北
         if (hp <= 0)
         {
@@ -39,5 +45,17 @@ public class Player : MonoBehaviour
     {
         hp += value;
         Debug.Log(playerName + " が " + value + " 回復");
+        UpdateHPUI();
+    }
+
+    //HP表示更新
+    public void UpdateHPUI()
+    {
+        hpText.text =playerName + " HP : " + hp;
+    }
+
+    private void Start()
+    {
+        UpdateHPUI();
     }
 }

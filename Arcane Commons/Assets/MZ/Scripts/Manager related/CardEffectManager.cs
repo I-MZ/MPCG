@@ -24,9 +24,10 @@ public class CardEffectManager : MonoBehaviour
 
             case EffectType.Heal:
 
-                user.hp += card.value;
+                user.Heal(card.value);
 
                 Debug.Log(user.playerName + " ‚ª‰ñ•œ");
+
                 break;
 
             case EffectType.Draw:
