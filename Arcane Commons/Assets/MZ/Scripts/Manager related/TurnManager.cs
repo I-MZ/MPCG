@@ -1,5 +1,6 @@
 //ターン進行を管理するコード
 
+using TMPro;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
@@ -16,6 +17,9 @@ public class TurnManager : MonoBehaviour
 
     [Header("現在のターンプレイヤー")]
     public Player currentPlayer;
+
+    [Header("ターン表示")]
+    public TMP_Text turnText;
 
     private void Awake()
     {
@@ -34,6 +38,9 @@ public class TurnManager : MonoBehaviour
     public void StartTurn()
     {
         Debug.Log(currentPlayer.playerName + " のターン開始");
+
+        //現在ターンテキスト
+        turnText.text =currentPlayer.playerName + " のターン";
 
         canUseCard = true;
 
