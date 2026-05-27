@@ -10,6 +10,9 @@ public class DeckManager : MonoBehaviour
     [Header("戦闘用共通デッキ")]
     public List<CardData> battleDeck = new List<CardData>();
 
+    [Header("捨て札")]
+    public List<CardData> discardPile = new List<CardData>();
+
     [Header("参加プレイヤー")]
     public List<Player> players = new List<Player>();
 
