@@ -33,6 +33,12 @@ public class CardUI : MonoBehaviour
     //カード使用
     public void UseCard()
     {
+        //ゲーム終了中
+        if (TurnManager.Instance.isGameOver)
+        {
+            return;
+        }
+
         //自分のターンじゃない
         if (ownerPlayer != TurnManager.Instance.currentPlayer)
         {

@@ -101,7 +101,7 @@ public class DeckManager : MonoBehaviour
 
         //UI生成
         GameObject cardObj =
-          //Instantiate(cardPrefab, handArea);  /新しいのを作ったから一旦コメントアウト
+          //Instantiate(cardPrefab, handArea);  //新しいのを作ったから一旦コメントアウト
             Instantiate(cardPrefab, targetPlayer.handArea);
 
         CardUI cardUI =

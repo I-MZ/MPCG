@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
         if (hp <= 0)
         {
             Debug.Log(playerName + " ‚Í”s–k‚µ‚Ü‚µ‚½");
+
+            TurnManager.Instance.GameOver(this);
         }
     }
 

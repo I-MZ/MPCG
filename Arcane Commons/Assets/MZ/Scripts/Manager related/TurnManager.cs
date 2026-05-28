@@ -21,6 +21,12 @@ public class TurnManager : MonoBehaviour
     [Header("ターン表示")]
     public TMP_Text turnText;
 
+    [Header("ゲーム終了表示")]
+    public TMP_Text gameOverText;
+
+    [HideInInspector]
+    public bool isGameOver = false;
+
     private void Awake()
     {
         Instance = this;
@@ -37,6 +43,11 @@ public class TurnManager : MonoBehaviour
     // ターン開始
     public void StartTurn()
     {
+        if (isGameOver)
+        {
+            return;
+        }
+
         Debug.Log(currentPlayer.playerName + " のターン開始");
 
         //現在ターンテキスト
@@ -86,5 +97,25 @@ public class TurnManager : MonoBehaviour
         {
             return player1;
         }
+    }
+
+    // ゲーム終了
+    public void GameOver(Player loser)
+    {
+        isGameOver = true;
+
+        Player winner;
+
+        if (loser == player1)
+        {
+            winner = player2;
+        }
+        else
+        {
+            winner = player1;
+        }
+
+        gameOverText.text =
+            winner.playerName + " WIN";
     }
 }
