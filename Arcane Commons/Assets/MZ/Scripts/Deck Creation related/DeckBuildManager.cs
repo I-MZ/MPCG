@@ -46,7 +46,7 @@ public class DeckBuildManager : MonoBehaviour
 
         //text.text = card.cardName;
 
-        DeckListItem item =textObj.GetComponent<DeckListItem>();
+        DeckListItem item = textObj.GetComponent<DeckListItem>();
 
         item.Setup(card, this);
 
@@ -82,5 +82,11 @@ public class DeckBuildManager : MonoBehaviour
     public void AddHeal()
     {
         AddCard(healCard);
+    }
+
+    //ƒfƒbƒL•Û‘¶
+    public void SaveDeck()
+    {
+        DeckDataManager.Instance.SaveDeck(currentDeck);
     }
 }
