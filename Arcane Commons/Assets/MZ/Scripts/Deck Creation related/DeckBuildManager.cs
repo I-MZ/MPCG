@@ -41,21 +41,29 @@ public class DeckBuildManager : MonoBehaviour
                 deckListContent
             );
 
-        TMP_Text text =
-            textObj.GetComponent<TMP_Text>();
+        //TMP_Text text =
+        //    textObj.GetComponent<TMP_Text>();
 
-        text.text = card.cardName;
+        //text.text = card.cardName;
+
+        DeckListItem item =textObj.GetComponent<DeckListItem>();
+
+        item.Setup(card, this);
 
         UpdateDeckUI();
     }
-    //public void AddCard(CardData card)
-    //{
-    //    currentDeck.Add(card);
 
-    //    Debug.Log(card.cardName + " を追加");
+    //カード削除
+    public void RemoveCard(CardData card, GameObject itemObject)
+    {
+        currentDeck.Remove(card);
 
-    //    UpdateDeckUI();
-    //}
+        Destroy(itemObject);
+
+        UpdateDeckUI();
+
+        Debug.Log(card.cardName + " を削除");
+    }
 
     // デッキUI更新
     public void UpdateDeckUI()
