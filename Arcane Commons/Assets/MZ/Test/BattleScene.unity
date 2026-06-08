@@ -153,9 +153,9 @@ MonoBehaviour:
   hpText: {fileID: 1302998744}
   deck:
   - {fileID: 11400000, guid: 6cdcaca2e47a08446a8a816d8afef74d, type: 2}
-  - {fileID: 11400000, guid: d86896b153f2c4147a0085c69665b420, type: 2}
   - {fileID: 11400000, guid: 6cdcaca2e47a08446a8a816d8afef74d, type: 2}
-  - {fileID: 11400000, guid: d86896b153f2c4147a0085c69665b420, type: 2}
+  - {fileID: 11400000, guid: 6cdcaca2e47a08446a8a816d8afef74d, type: 2}
+  - {fileID: 11400000, guid: 6cdcaca2e47a08446a8a816d8afef74d, type: 2}
   hand: []
   handArea: {fileID: 718477364}
 --- !u!4 &16053724
@@ -1027,9 +1027,9 @@ MonoBehaviour:
   hpText: {fileID: 1027343734}
   deck:
   - {fileID: 11400000, guid: 2aa7b2b18104ff34b869f5f44bc3ae6b, type: 2}
-  - {fileID: 11400000, guid: fbd30fd194434364aa61319c2b135683, type: 2}
   - {fileID: 11400000, guid: 2aa7b2b18104ff34b869f5f44bc3ae6b, type: 2}
-  - {fileID: 11400000, guid: fbd30fd194434364aa61319c2b135683, type: 2}
+  - {fileID: 11400000, guid: 2aa7b2b18104ff34b869f5f44bc3ae6b, type: 2}
+  - {fileID: 11400000, guid: 2aa7b2b18104ff34b869f5f44bc3ae6b, type: 2}
   hand: []
   handArea: {fileID: 706716716}
 --- !u!4 &841340459

@@ -56,8 +56,26 @@ public class Player : MonoBehaviour
         hpText.text =playerName + " HP : " + hp;
     }
 
+    //private void Start()
+    //{
+    //    UpdateHPUI();
+    //}
     private void Start()
     {
         UpdateHPUI();
+
+        if (DeckDataManager.Instance != null)
+        {
+            deck =
+                new List<CardData>
+                (
+                    DeckDataManager.Instance.savedDeck
+                );
+
+            Debug.Log
+            (
+                playerName + " ÉfÉbÉLì«çû : " + deck.Count
+            );
+        }
     }
 }

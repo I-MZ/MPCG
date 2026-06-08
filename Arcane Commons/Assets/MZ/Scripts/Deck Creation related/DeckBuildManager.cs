@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+using UnityEngine.SceneManagement;
+
 public class DeckBuildManager : MonoBehaviour
 {
     [Header("Œ»İì¬’†ƒfƒbƒL")]
@@ -88,5 +90,12 @@ public class DeckBuildManager : MonoBehaviour
     public void SaveDeck()
     {
         DeckDataManager.Instance.SaveDeck(currentDeck);
+    }
+
+    public void StartBattle()
+    {
+        SaveDeck();
+
+        SceneManager.LoadScene("BattleScene");
     }
 }
