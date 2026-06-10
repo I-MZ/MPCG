@@ -102,6 +102,9 @@ public class TurnManager : MonoBehaviour
         }
 
         currentPlayer = players[currentPlayerIndex];
+
+        Debug.Log("現在Index : " + currentPlayerIndex);
+        Debug.Log("現在Player : " + currentPlayer.playerName);
     }
 
     //敵取得（現状は2人戦用）
@@ -118,20 +121,48 @@ public class TurnManager : MonoBehaviour
         return null;
     }
 
-    //ゲーム終了
+    //敗北プレイヤーをターン順から除外
+    public void RemovePlayer(Player player)
+    {
+        //何番目にいるか取得
+        int removeIndex = players.IndexOf(player);
+
+        if (removeIndex == -1)
+        {
+            return;
+        }
+
+        //リストから削除
+        players.Remove(player);
+
+        Debug.Log(player.playerName + " をターン順から除外");
+
+        //現在のインデックス調整
+        if (removeIndex < currentPlayerIndex)
+        {
+            currentPlayerIndex--;
+        }
+
+        //範囲外になったら先頭へ
+        if (currentPlayerIndex >= players.Count)
+        {
+            currentPlayerIndex = 0;
+        }
+    }
+
+    //ゲーム終了判定
     public void GameOver(Player loser)
     {
-        isGameOver = true;
+        //ターン順から除外
+        RemovePlayer(loser);
 
-        foreach (Player player in players)
+        //残り1人なら勝利
+        if (players.Count == 1)
         {
-            if (player != loser)
-            {
-                gameOverText.text =
-                    player.playerName + " WIN";
+            isGameOver = true;
 
-                break;
-            }
+            gameOverText.text =
+                players[0].playerName + " WIN";
         }
     }
 }
