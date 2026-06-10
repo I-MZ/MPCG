@@ -1814,8 +1814,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnManager
   canUseCard: 1
-  player1: {fileID: 16053723}
-  player2: {fileID: 841340458}
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
   currentPlayer: {fileID: 0}
   turnText: {fileID: 278681681}
   gameOverText: {fileID: 1430267407}

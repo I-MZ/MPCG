@@ -1,5 +1,8 @@
 //ターン進行を管理するコード
 
+//ターン進行を管理するコード
+
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -10,13 +13,14 @@ public class TurnManager : MonoBehaviour
     [Header("カード使用制限")]
     public bool canUseCard = true;
 
-    [Header("プレイヤー")]
-    public Player player1;
-
-    public Player player2;
+    [Header("参加プレイヤー")]
+    public List<Player> players = new List<Player>();
 
     [Header("現在のターンプレイヤー")]
     public Player currentPlayer;
+
+    //現在のプレイヤー番号
+    private int currentPlayerIndex = 0;
 
     [Header("ターン表示")]
     public TMP_Text turnText;
@@ -34,13 +38,30 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
-        // 最初はPlayer1ターン
-        currentPlayer = player1;
+        //参加者がいない
+        if (players.Count == 0)
+        {
+            Debug.LogError("参加プレイヤーがいません");
+            return;
+        }
+
+        //Noneが混ざっていないか確認
+        foreach (Player player in players)
+        {
+            if (player == null)
+            {
+                Debug.LogError("Playersリストに None が設定されています");
+                return;
+            }
+        }
+
+        currentPlayerIndex = 0;
+        currentPlayer = players[currentPlayerIndex];
 
         StartTurn();
     }
 
-    // ターン開始
+    //ターン開始
     public void StartTurn()
     {
         if (isGameOver)
@@ -50,16 +71,15 @@ public class TurnManager : MonoBehaviour
 
         Debug.Log(currentPlayer.playerName + " のターン開始");
 
-        //現在ターンテキスト
-        turnText.text =currentPlayer.playerName + " のターン";
+        turnText.text =
+            currentPlayer.playerName + " のターン";
 
         canUseCard = true;
 
-        // 現在ターンのプレイヤーがドロー
         DeckManager.Instance.DrawCard(currentPlayer);
     }
 
-    // ターン終了
+    //ターン終了
     public void EndTurn()
     {
         Debug.Log(currentPlayer.playerName + " のターン終了");
@@ -71,51 +91,47 @@ public class TurnManager : MonoBehaviour
         StartTurn();
     }
 
-    // ターン変更
+    //ターン変更
     void ChangeTurn()
     {
-        // Player1 → Player2
-        if (currentPlayer == player1)
+        currentPlayerIndex++;
+
+        if (currentPlayerIndex >= players.Count)
         {
-            currentPlayer = player2;
+            currentPlayerIndex = 0;
         }
-        // Player2 → Player1
-        else
-        {
-            currentPlayer = player1;
-        }
+
+        currentPlayer = players[currentPlayerIndex];
     }
 
-    // 現在ターンプレイヤーの敵を取得
+    //敵取得（現状は2人戦用）
     public Player GetEnemyPlayer()
     {
-        if (currentPlayer == player1)
+        foreach (Player player in players)
         {
-            return player2;
+            if (player != currentPlayer)
+            {
+                return player;
+            }
         }
-        else
-        {
-            return player1;
-        }
+
+        return null;
     }
 
-    // ゲーム終了
+    //ゲーム終了
     public void GameOver(Player loser)
     {
         isGameOver = true;
 
-        Player winner;
-
-        if (loser == player1)
+        foreach (Player player in players)
         {
-            winner = player2;
-        }
-        else
-        {
-            winner = player1;
-        }
+            if (player != loser)
+            {
+                gameOverText.text =
+                    player.playerName + " WIN";
 
-        gameOverText.text =
-            winner.playerName + " WIN";
+                break;
+            }
+        }
     }
 }
