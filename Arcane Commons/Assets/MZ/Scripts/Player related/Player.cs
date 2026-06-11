@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
 
         UpdateHPUI();
 
+
+
         //”s–k
         if (hp <= 0)
         {
@@ -56,10 +58,57 @@ public class Player : MonoBehaviour
         hpText.text =playerName + " HP : " + hp;
     }
 
-    //private void Start()
-    //{
-    //    UpdateHPUI();
-    //}
+    //HP•\Ž¦‚ªƒNƒŠƒbƒN‚³‚ê‚½
+    public void OnClickPlayer()
+    {
+        //‘ÎÛ‘I‘ð’†‚¶‚á‚È‚¢
+        if (!TurnManager.Instance.isSelectingTarget)
+        {
+            return;
+        }
+
+        Debug.Log(playerName + " ‚ª‘I‘ð‚³‚ê‚½");
+
+        //ƒJ[ƒhŒø‰Ê”­“®
+        CardEffectManager.Instance.UseCardEffect
+        (
+            TurnManager.Instance.selectedCard,
+            TurnManager.Instance.selectedUser,
+            this
+        );
+
+        //ŽèŽD‚©‚çíœ
+        TurnManager.Instance.selectedUser.hand.Remove
+        (
+            TurnManager.Instance.selectedCard
+        );
+
+        //ŽÌ‚ÄŽD‚Ö‘—‚é
+        DeckManager.Instance.discardPile.Add
+        (
+            TurnManager.Instance.selectedCard
+        );
+
+        //UIíœ
+        Destroy
+        (
+            TurnManager.Instance.selectedCardUI.gameObject
+        );
+
+        Debug.Log("ŽÌ‚ÄŽD–‡” : " +DeckManager.Instance.discardPile.Count);
+
+        Debug.Log(TurnManager.Instance.selectedCard.cardName +" ‚ðŽÌ‚ÄŽD‚Ö‘—‚Á‚½");
+
+        //‘ÎÛ‘I‘ðI—¹
+        TurnManager.Instance.isSelectingTarget = false;
+
+        TurnManager.Instance.selectedCard = null;
+
+        TurnManager.Instance.selectedUser = null;
+
+        TurnManager.Instance.selectedCardUI = null;
+    }
+
     private void Start()
     {
         UpdateHPUI();

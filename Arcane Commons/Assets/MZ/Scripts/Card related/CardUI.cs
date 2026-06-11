@@ -33,6 +33,31 @@ public class CardUI : MonoBehaviour
     //カード使用
     public void UseCard()
     {
+        //対象選択中
+        if (TurnManager.Instance.isSelectingTarget)
+        {
+            if (TurnManager.Instance.selectedCardUI == this)
+            {
+                Debug.Log("対象選択をキャンセルしました");
+
+                TurnManager.Instance.isSelectingTarget = false;
+
+                TurnManager.Instance.canUseCard = true;
+
+                TurnManager.Instance.selectedCard = null;
+
+                TurnManager.Instance.selectedUser = null;
+
+                TurnManager.Instance.selectedCardUI = null;
+
+                return;
+            }
+
+            Debug.Log("現在、対象を選択中です");
+
+            return;
+        }
+
         //ゲーム終了中
         if (TurnManager.Instance.isGameOver)
         {
@@ -59,7 +84,23 @@ public class CardUI : MonoBehaviour
 
         Debug.Log(cardData.cardName + " を使用");
 
-        //カード効果発動
+        //攻撃カードなら対象選択モード
+        if (cardData.effectType == EffectType.Damage)
+        {
+            TurnManager.Instance.isSelectingTarget = true;
+
+            TurnManager.Instance.selectedCard = cardData;
+
+            TurnManager.Instance.selectedUser = ownerPlayer;
+
+            TurnManager.Instance.selectedCardUI = this;
+
+            Debug.Log("攻撃対象を選択してください");
+
+            return;
+        }
+
+        //攻撃以外は即発動
         CardEffectManager.Instance.UseCardEffect(
             cardData,
             ownerPlayer,

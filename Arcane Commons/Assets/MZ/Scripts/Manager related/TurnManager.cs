@@ -1,7 +1,5 @@
 //ターン進行を管理するコード
 
-//ターン進行を管理するコード
-
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -30,6 +28,22 @@ public class TurnManager : MonoBehaviour
 
     [HideInInspector]
     public bool isGameOver = false;
+
+    //対象選択中か
+    [HideInInspector]
+    public bool isSelectingTarget = false;
+
+    //使用中のカード
+    [HideInInspector]
+    public CardData selectedCard;
+
+    //カード使用者
+    [HideInInspector]
+    public Player selectedUser;
+
+    //選択中のカードUI
+    [HideInInspector]
+    public CardUI selectedCardUI;
 
     private void Awake()
     {
