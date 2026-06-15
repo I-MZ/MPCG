@@ -20,6 +20,9 @@ public class CardData : ScriptableObject
     [Header("Œø‰Ê")]
     public EffectType effectType;
 
+    [Header("¢Š«‚·‚ég‚¢–‚")]
+    public MinionData summonMinion;
+
     public int value;
 }
 

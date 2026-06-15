@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     [Header("èD")]
     public List<CardData> hand = new List<CardData>();
 
+    [Header("ê‚Ìg‚¢–‚")]
+    public List<Minion> minions = new List<Minion>();
+
     [Header("èDUI")]
     public Transform handArea;
 
