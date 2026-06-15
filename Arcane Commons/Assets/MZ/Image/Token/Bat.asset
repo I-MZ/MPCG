@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e86cbb0d5c77a5469164f1981838eb4, type: 3}
   m_Name: Bat
   m_EditorClassIdentifier: Assembly-CSharp::MinionData
-  minionName: 
-  attack: 0
-  hp: 0
+  minionName: bat
+  attack: 1
+  hp: 1

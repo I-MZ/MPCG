@@ -23,6 +23,9 @@ public class CardData : ScriptableObject
     [Header("¢Š«‚·‚ég‚¢–‚")]
     public MinionData summonMinion;
 
+    [Header("¢Š«‚·‚é”")]
+    public int summonCount = 1;
+
     public int value;
 }
 

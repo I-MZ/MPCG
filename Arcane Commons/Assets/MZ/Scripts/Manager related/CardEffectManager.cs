@@ -39,6 +39,12 @@ public class CardEffectManager : MonoBehaviour
 
                 Debug.Log(user.playerName + " ‚ªƒhƒ[");
                 break;
+
+            case EffectType.Summon:@//¢Š«
+
+                MinionManager.Instance.SummonMinion(user, card.summonMinion);
+
+                break;
         }
     }
 }
