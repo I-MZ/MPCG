@@ -1,4 +1,5 @@
 //手札関係のコード
+//多分必要ないらしい
 
 using System.Collections.Generic;
 using TMPro;

@@ -4,7 +4,7 @@ using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     [Header("Šî–{î•ñ")]
     public string playerName;
@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
 
     [Header("èD")]
     public List<CardData> hand = new List<CardData>();
+
+    [Header("g‚¢–‚UI")]
+    public Transform minionArea;
 
     [Header("ê‚Ìg‚¢–‚")]
     public List<Minion> minions = new List<Minion>();

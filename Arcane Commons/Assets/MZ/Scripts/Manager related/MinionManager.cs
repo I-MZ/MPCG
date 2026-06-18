@@ -15,17 +15,13 @@ public class MinionManager : MonoBehaviour
     }
 
     //égÇ¢ñÇè¢ä´
-    public void SummonMinion(
-        Player owner,
-        MinionData data)
+    public void SummonMinion(Player owner,MinionData data)
     {
-        GameObject obj =
-            Instantiate(minionPrefab);
+        GameObject obj =Instantiate(minionPrefab,owner.minionArea);
 
-        Minion minion =
-            obj.GetComponent<Minion>();
+        Minion minion = obj.GetComponent<Minion>();
 
-        minion.Setup(data);
+        minion.Setup(data, owner);
 
         owner.minions.Add(minion);
 
