@@ -11,7 +11,8 @@ public class CardEffectManager : MonoBehaviour
         Instance = this;
     }
 
-    public void UseCardEffect(CardData card, Player user, Player target)
+    //public void UseCardEffect(CardData card, Player user, Player target)
+    public void UseCardEffect(CardData card, Player user, IDamageable target)
     {
         switch (card.effectType)
         {

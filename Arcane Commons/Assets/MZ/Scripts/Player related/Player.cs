@@ -67,9 +67,43 @@ public class Player : MonoBehaviour, IDamageable
     //HP表示がクリックされた
     public void OnClickPlayer()
     {
+        //使い魔の攻撃対象選択中
+        if (TurnManager.Instance.isSelectingMinionTarget)
+        {
+            //自分は攻撃できない
+            if (this == TurnManager.Instance.selectedMinion.owner)
+            {
+                Debug.Log("自分は攻撃できません");
+
+                return;
+            }
+
+            TakeDamage(
+                TurnManager.Instance.selectedMinion.data.attack
+            );
+
+            TurnManager.Instance.selectedMinion.hasAttacked = true;
+
+            TurnManager.Instance.isSelectingMinionTarget = false;
+
+            TurnManager.Instance.selectedMinion = null;
+
+            Debug.Log("使い魔が攻撃しました");
+
+            return;
+        }
+
         //対象選択中じゃない
         if (!TurnManager.Instance.isSelectingTarget)
         {
+            return;
+        }
+
+        //自分は選べない
+        if (this == TurnManager.Instance.selectedUser)
+        {
+            Debug.Log("自分は選べません");
+
             return;
         }
 

@@ -45,6 +45,12 @@ public class TurnManager : MonoBehaviour
     [HideInInspector]
     public CardUI selectedCardUI;
 
+    [HideInInspector]
+    public bool isSelectingMinionTarget = false;
+
+    [HideInInspector]
+    public Minion selectedMinion;
+
     private void Awake()
     {
         Instance = this;
@@ -89,6 +95,13 @@ public class TurnManager : MonoBehaviour
             currentPlayer.playerName + " ÇÃÉ^Å[Éì";
 
         canUseCard = true;
+
+        foreach (Minion minion in currentPlayer.minions)
+        {
+            minion.canAttack = true;
+
+            minion.hasAttacked = false;
+        }
 
         DeckManager.Instance.DrawCard(currentPlayer);
     }
