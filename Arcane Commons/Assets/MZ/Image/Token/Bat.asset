@@ -15,3 +15,7 @@ MonoBehaviour:
   minionName: bat
   attack: 1
   hp: 1
+  abilities:
+  - trigger: 1
+    effect: 4
+    value: 0

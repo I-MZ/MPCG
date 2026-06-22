@@ -42,6 +42,12 @@ public class Minion : MonoBehaviour, IDamageable
 
         hasAttacked = false;
 
+        //疾走
+        if (HasAbility(AbilityTrigger.OnPlay, AbilityEffect.Rush))
+        {
+            canAttack = true;
+        }
+
         // UI更新
         nameText.text = data.minionName;
 
@@ -53,6 +59,28 @@ public class Minion : MonoBehaviour, IDamageable
         // artworkImage.sprite = data.artwork;
 
         Debug.Log(data.minionName + " を召喚");
+    }
+
+    //能力を持っているか
+    public bool HasAbility(AbilityTrigger trigger,AbilityEffect effect)
+    {
+        Debug.Log( data.minionName +" の能力チェック開始");
+
+        foreach (AbilityData ability in data.abilities)
+        {
+            Debug.Log("所持能力 : " + ability.trigger + " / " + ability.effect);
+
+            if (ability.trigger == trigger &&ability.effect == effect)
+            {
+                Debug.Log("能力一致 : " + trigger + " / " + effect);
+
+                return true;
+            }
+        }
+
+        Debug.Log("能力なし : " + trigger + " / " + effect);
+
+        return false;
     }
 
     //クリック
@@ -86,6 +114,8 @@ public class Minion : MonoBehaviour, IDamageable
         //使い魔の攻撃対象選択中
         if (TurnManager.Instance.isSelectingMinionTarget)
         {
+            Debug.Log("攻撃対象選択処理に入った");
+
             //同じ使い魔を押したらキャンセル
             if (TurnManager.Instance.selectedMinion == this)
             {
@@ -106,6 +136,25 @@ public class Minion : MonoBehaviour, IDamageable
             }
 
             TakeDamage(TurnManager.Instance.selectedMinion.data.attack);
+
+            //吸血
+            Debug.Log("吸血チェック開始");
+
+            if (TurnManager.Instance.selectedMinion.HasAbility(
+                AbilityTrigger.OnAttack,
+                AbilityEffect.Lifesteal))
+            {
+                Debug.Log("吸血発動");
+
+                TurnManager.Instance.selectedMinion.owner.Heal
+                (
+                    TurnManager.Instance.selectedMinion.data.attack
+                );
+            }
+            else
+            {
+                Debug.Log("吸血なし");
+            }
 
             TurnManager.Instance.selectedMinion.hasAttacked = true;
 

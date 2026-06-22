@@ -1,5 +1,6 @@
 //使い魔のデータを扱うコード
 
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewMinion",
@@ -14,4 +15,7 @@ public class MinionData : ScriptableObject
 
     [Header("体力")]
     public int hp;
+
+    [Header("能力")]
+    public List<AbilityData> abilities = new List<AbilityData>();
 }
