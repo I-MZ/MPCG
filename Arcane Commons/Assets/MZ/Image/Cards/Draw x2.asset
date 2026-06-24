@@ -16,5 +16,8 @@ MonoBehaviour:
   description: 
   cardImage: {fileID: 0}
   cost: 1
+  cardType: 1
   effectType: 3
+  summonMinion: {fileID: 0}
+  summonCount: 1
   value: 2

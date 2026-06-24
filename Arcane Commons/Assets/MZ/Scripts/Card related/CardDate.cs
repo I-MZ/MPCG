@@ -17,6 +17,9 @@ public class CardData : ScriptableObject
     [Header("コスト")]
     public int cost;
 
+    [Header("カード種類")]
+    public CardType cardType;
+
     [Header("効果")]
     public EffectType effectType;
 
@@ -29,7 +32,7 @@ public class CardData : ScriptableObject
     public int value;
 }
 
-//ダメージを別規格で扱ってみるから一旦保留
+//ダメージを別規格で扱ってみるから一旦保留(役に立ったぜ！)
 //using UnityEngine;
 
 //[CreateAssetMenu(fileName = "NewCard", menuName = "Card Game/Card")]

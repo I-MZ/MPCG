@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0fa5854287e333459188399a38100ce, type: 3}
-  m_Name: HealPotion
+  m_Name: Knight Summon
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardName: HealPotion
+  cardName: Knight Summon
   description: 
   cardImage: {fileID: 0}
-  cost: 1
+  cost: 0
   cardType: 1
-  effectType: 2
-  summonMinion: {fileID: 0}
+  effectType: 6
+  summonMinion: {fileID: 11400000, guid: bba35c0bc803e62448e8472f28c5de46, type: 2}
   summonCount: 1
-  value: 3
+  value: 0

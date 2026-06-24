@@ -970,10 +970,8 @@ MonoBehaviour:
   hp: 20
   hpText: {fileID: 603245101}
   deck:
-  - {fileID: 11400000, guid: 6bbf7bdb4a61e8f4a9479bab850e507b, type: 2}
-  - {fileID: 11400000, guid: 6bbf7bdb4a61e8f4a9479bab850e507b, type: 2}
-  - {fileID: 11400000, guid: 6bbf7bdb4a61e8f4a9479bab850e507b, type: 2}
-  - {fileID: 11400000, guid: 6bbf7bdb4a61e8f4a9479bab850e507b, type: 2}
+  - {fileID: 11400000, guid: 37040f99977426149a97586303bbb804, type: 2}
+  - {fileID: 11400000, guid: 37040f99977426149a97586303bbb804, type: 2}
   hand: []
   minionArea: {fileID: 526243347}
   minions: []
@@ -1591,8 +1589,6 @@ MonoBehaviour:
   hp: 20
   hpText: {fileID: 1027343734}
   deck:
-  - {fileID: 11400000, guid: 2aa7b2b18104ff34b869f5f44bc3ae6b, type: 2}
-  - {fileID: 11400000, guid: 2aa7b2b18104ff34b869f5f44bc3ae6b, type: 2}
   - {fileID: 11400000, guid: 2aa7b2b18104ff34b869f5f44bc3ae6b, type: 2}
   - {fileID: 11400000, guid: 2aa7b2b18104ff34b869f5f44bc3ae6b, type: 2}
   hand: []

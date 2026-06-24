@@ -64,7 +64,8 @@ public class Minion : MonoBehaviour, IDamageable
     //能力を持っているか
     public bool HasAbility(AbilityTrigger trigger,AbilityEffect effect)
     {
-        Debug.Log( data.minionName +" の能力チェック開始");
+        Debug.Log(data.minionName + " の能力チェック開始");
+        Debug.Log(data.minionName + " abilities数 = " + data.abilities.Count);
 
         foreach (AbilityData ability in data.abilities)
         {
@@ -135,14 +136,42 @@ public class Minion : MonoBehaviour, IDamageable
                 return;
             }
 
-            TakeDamage(TurnManager.Instance.selectedMinion.data.attack);
+            Minion attacker = TurnManager.Instance.selectedMinion;
+
+            //相手に守護がいるか
+            bool hasGuard = false;
+
+            foreach (Minion minion in owner.minions)
+            {
+                if (minion.HasAbility(AbilityTrigger.OnPlay,AbilityEffect.Guard))
+                {
+                    hasGuard = true;
+
+                    break;
+                }
+            }
+
+            Debug.Log("hasGuard = " + hasGuard);
+
+            //守護がいるのに守護以外を攻撃
+            //if (hasGuard && !HasAbility(AbilityTrigger.OnPlay, AbilityEffect.Guard))
+            if (hasGuard && !this.HasAbility(AbilityTrigger.OnPlay, AbilityEffect.Guard))
+            {
+                Debug.Log("守護がいるためこの使い魔は攻撃できません");
+
+                return;
+            }
+
+            //相手にダメージ
+            TakeDamage(attacker.data.attack);
+
+            //反撃ダメージ
+            attacker.TakeDamage(data.attack);
 
             //吸血
             Debug.Log("吸血チェック開始");
 
-            if (TurnManager.Instance.selectedMinion.HasAbility(
-                AbilityTrigger.OnAttack,
-                AbilityEffect.Lifesteal))
+            if (TurnManager.Instance.selectedMinion.HasAbility(AbilityTrigger.OnAttack,AbilityEffect.Lifesteal))
             {
                 Debug.Log("吸血発動");
 

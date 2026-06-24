@@ -78,9 +78,32 @@ public class Player : MonoBehaviour, IDamageable
                 return;
             }
 
-            TakeDamage(
-                TurnManager.Instance.selectedMinion.data.attack
-            );
+            //相手に守護がいるか
+            foreach (Minion minion in minions)
+            {
+                if (minion.HasAbility(
+                    AbilityTrigger.OnPlay,
+                    AbilityEffect.Guard))
+                {
+                    Debug.Log("守護がいるためプレイヤーを攻撃できません");
+
+                    return;
+                }
+            }
+
+            TakeDamage(TurnManager.Instance.selectedMinion.data.attack);
+
+            //吸血
+            if (TurnManager.Instance.selectedMinion.HasAbility(
+                AbilityTrigger.OnAttack,
+                AbilityEffect.Lifesteal))
+            {
+                Debug.Log("吸血発動");
+
+                TurnManager.Instance.selectedMinion.owner.Heal(
+                    TurnManager.Instance.selectedMinion.data.attack
+                );
+            }
 
             TurnManager.Instance.selectedMinion.hasAttacked = true;
 
@@ -105,6 +128,20 @@ public class Player : MonoBehaviour, IDamageable
             Debug.Log("自分は選べません");
 
             return;
+        }
+
+        //武器攻撃なら守護チェック
+        if (TurnManager.Instance.selectedCard.cardType== CardType.Weapon)
+        {
+            foreach (Minion minion in minions)
+            {
+                if (minion.HasAbility( AbilityTrigger.OnPlay,AbilityEffect.Guard))
+                {
+                    Debug.Log( "守護がいるためプレイヤーを攻撃できません");
+
+                    return;
+                }
+            }
         }
 
         Debug.Log(playerName + " が選択された");
