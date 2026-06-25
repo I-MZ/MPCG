@@ -64,9 +64,10 @@ public class Minion : MonoBehaviour, IDamageable
     //能力を持っているか
     public bool HasAbility(AbilityTrigger trigger,AbilityEffect effect)
     {
-        Debug.Log(data.minionName + " の能力チェック開始");
+        Debug.Log("能力チェック対象 : " +data.minionName +" trigger=" + trigger +" effect=" + effect);
         Debug.Log(data.minionName + " abilities数 = " + data.abilities.Count);
 
+        Debug.Log(data.minionName +" abilities数 = " +data.abilities.Count);
         foreach (AbilityData ability in data.abilities)
         {
             Debug.Log("所持能力 : " + ability.trigger + " / " + ability.effect);
@@ -209,6 +210,39 @@ public class Minion : MonoBehaviour, IDamageable
             Debug.Log("自分の使い魔は選べません");
 
             return;
+        }
+
+        //武器攻撃なら守護チェック
+        if (TurnManager.Instance.selectedCard.cardType
+            == CardType.Weapon)
+        {
+            bool hasGuard = false;
+
+            foreach (Minion minion in owner.minions)
+            {
+                if (minion.HasAbility(
+                    AbilityTrigger.OnPlay,
+                    AbilityEffect.Guard))
+                {
+                    hasGuard = true;
+
+                    break;
+                }
+            }
+
+            Debug.Log("武器攻撃 hasGuard = " + hasGuard);
+
+            if (hasGuard &&
+                !HasAbility(
+                    AbilityTrigger.OnPlay,
+                    AbilityEffect.Guard))
+            {
+                Debug.Log(
+                    "守護がいるためこの使い魔は攻撃できません"
+                );
+
+                return;
+            }
         }
 
         Debug.Log(data.minionName + " が選択された");
