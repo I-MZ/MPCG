@@ -1,5 +1,4 @@
 using UnityEngine;
-
 using System;
 
 public enum AbilityTrigger
@@ -32,6 +31,8 @@ public class AbilityData
     public AbilityTrigger trigger;
 
     public AbilityEffect effect;
+
+    public AbilityTarget target;
 
     public int value;
 }

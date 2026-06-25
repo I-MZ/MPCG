@@ -85,6 +85,84 @@ public class Minion : MonoBehaviour, IDamageable
         return false;
     }
 
+    //能力発動
+    public void ActivateAbilities(AbilityTrigger trigger)
+    {
+        foreach (AbilityData ability in data.abilities)
+        {
+            if (ability.trigger != trigger)
+            {
+                continue;
+            }
+
+            switch (ability.effect)
+            {
+                case AbilityEffect.Draw:
+
+                    for (int i = 0; i < ability.value; i++)
+                    {
+                        DeckManager.Instance.DrawCard(owner);
+                    }
+
+                    Debug.Log(data.minionName + " の死亡時ドロー発動" );
+
+                    break;
+
+                case AbilityEffect.Damage:
+
+                    switch (ability.target)
+                    {
+                        case AbilityTarget.Self:
+
+                            owner.TakeDamage(ability.value);
+
+                            break;
+
+                        case AbilityTarget.EnemyPlayer:
+
+                            Player enemy =TurnManager.Instance.GetEnemyPlayer();
+
+                            if (enemy != null)
+                            {
+                                enemy.TakeDamage(ability.value);
+                            }
+
+                            break;
+
+                        case AbilityTarget.AllEnemies:
+
+                            foreach (Player enemyPlayer in TurnManager.Instance.GetEnemies(owner))
+                            {
+                                enemyPlayer.TakeDamage(ability.value);
+                            }
+
+                            break;
+
+                        case AbilityTarget.AllPlayers:
+
+                            foreach (Player player in TurnManager.Instance.players)
+                            {
+                                player.TakeDamage(ability.value);
+                            }
+
+                            break;
+                    }
+
+                    Debug.Log(data.minionName + " のダメージ能力発動");
+
+                    break;
+
+                case AbilityEffect.Heal:
+
+                    owner.Heal(ability.value);
+
+                    Debug.Log(data.minionName +" の死亡時回復発動");
+
+                    break;
+            }
+        }
+    }
+
     //クリック
     public void OnClickMinion()
     {
@@ -232,14 +310,9 @@ public class Minion : MonoBehaviour, IDamageable
 
             Debug.Log("武器攻撃 hasGuard = " + hasGuard);
 
-            if (hasGuard &&
-                !HasAbility(
-                    AbilityTrigger.OnPlay,
-                    AbilityEffect.Guard))
+            if (hasGuard &&!HasAbility(AbilityTrigger.OnPlay, AbilityEffect.Guard))
             {
-                Debug.Log(
-                    "守護がいるためこの使い魔は攻撃できません"
-                );
+                Debug.Log("守護がいるためこの使い魔は攻撃できません");
 
                 return;
             }
@@ -301,7 +374,8 @@ public class Minion : MonoBehaviour, IDamageable
     {
         Debug.Log(data.minionName + " は倒れた");
 
-        //プレイヤーの場から削除
+        ActivateAbilities(AbilityTrigger.OnDeath);
+
         owner.minions.Remove(this);
 
         Destroy(gameObject);

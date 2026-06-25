@@ -148,6 +148,21 @@ public class TurnManager : MonoBehaviour
         return null;
     }
 
+    public List<Player> GetEnemies(Player owner)
+    {
+        List<Player> enemies = new List<Player>();
+
+        foreach (Player player in players)
+        {
+            if (player != owner)
+            {
+                enemies.Add(player);
+            }
+        }
+
+        return enemies;
+    }
+
     //敗北プレイヤーをターン順から除外
     public void RemovePlayer(Player player)
     {

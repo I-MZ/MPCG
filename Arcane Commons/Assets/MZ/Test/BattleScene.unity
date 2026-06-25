@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestSummon
   targetPlayer: {fileID: 16053723}
-  summonData: {fileID: 11400000, guid: e47da69ab07b7f2418e6b862d73afc5d, type: 2}
+  summonData: {fileID: 11400000, guid: 1af365c3300cff94d80bc9cfb1231eb7, type: 2}
 --- !u!1 &178859677
 GameObject:
   m_ObjectHideFlags: 0
