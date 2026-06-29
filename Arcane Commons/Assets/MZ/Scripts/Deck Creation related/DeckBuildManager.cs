@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 public class DeckBuildManager : MonoBehaviour
 {
     [Header("現在作成中デッキ")]
-    public List<CardData> currentDeck =
-        new List<CardData>();
+    //public DeckSaveData currentDeckData =new DeckSaveData(); エラー回避
+    public List<CardData> currentDeck = new List<CardData>();
 
     [Header("デッキ枚数表示")]
     public TMP_Text deckCountText;
@@ -34,20 +34,19 @@ public class DeckBuildManager : MonoBehaviour
     // カード追加
     public void AddCard(CardData card)
     {
+        //currentDeckData.cards.Add(card); エラー回避
         currentDeck.Add(card);
 
         Debug.Log(card.cardName + " を追加");
 
         // 一覧表示生成
-        GameObject textObj =
-            Instantiate(
+        GameObject textObj =Instantiate
+            (
                 cardNameTextPrefab,
                 deckListContent
             );
 
-        //TMP_Text text =
-        //    textObj.GetComponent<TMP_Text>();
-
+        //TMP_Text text =textObj.GetComponent<TMP_Text>(); よくわからん奴
         //text.text = card.cardName;
 
         DeckListItem item = textObj.GetComponent<DeckListItem>();
@@ -60,6 +59,7 @@ public class DeckBuildManager : MonoBehaviour
     //カード削除
     public void RemoveCard(CardData card, GameObject itemObject)
     {
+        //currentDeckData.cards.Remove(card); エラー回避
         currentDeck.Remove(card);
 
         Destroy(itemObject);
@@ -72,8 +72,7 @@ public class DeckBuildManager : MonoBehaviour
     // デッキUI更新
     public void UpdateDeckUI()
     {
-        deckCountText.text =
-            "デッキ枚数 : " + currentDeck.Count;
+        deckCountText.text ="デッキ枚数 : " + currentDeck.Count;
     }
 
     // Sword追加ボタン

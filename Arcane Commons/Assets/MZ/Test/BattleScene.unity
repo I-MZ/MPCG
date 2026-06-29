@@ -1305,7 +1305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -344.09, y: 314}
+  m_AnchoredPosition: {x: -346, y: 317}
   m_SizeDelta: {x: 222.5767, y: 37.822}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &688627992
@@ -1875,7 +1875,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -344.09, y: 264}
+  m_AnchoredPosition: {x: -346, y: 268}
   m_SizeDelta: {x: 249.82, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1027343733
@@ -2762,7 +2762,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 96.600006}
+  m_AnchoredPosition: {x: 0, y: 86.600006}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1717497120
@@ -2951,6 +2951,13 @@ MonoBehaviour:
   selectedCardUI: {fileID: 0}
   isSelectingMinionTarget: 0
   selectedMinion: {fileID: 0}
+  isSelectingAbilityTarget: 0
+  abilityUser: {fileID: 0}
+  selectedAbility:
+    trigger: 0
+    effect: 0
+    target: 0
+    value: 0
 --- !u!114 &1902325760
 MonoBehaviour:
   m_ObjectHideFlags: 0
