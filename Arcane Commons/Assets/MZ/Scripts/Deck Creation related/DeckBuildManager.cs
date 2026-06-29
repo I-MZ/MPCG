@@ -1,3 +1,5 @@
+//デッキ編集画面全体
+
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;

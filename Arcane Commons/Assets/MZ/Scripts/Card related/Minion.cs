@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Minion : MonoBehaviour, IDamageable
 {
+
     [Header("元データ")]
     public MinionData data;
 
@@ -62,17 +63,17 @@ public class Minion : MonoBehaviour, IDamageable
     }
 
     //能力を持っているか
-    public bool HasAbility(AbilityTrigger trigger,AbilityEffect effect)
+    public bool HasAbility(AbilityTrigger trigger, AbilityEffect effect)
     {
-        Debug.Log("能力チェック対象 : " +data.minionName +" trigger=" + trigger +" effect=" + effect);
+        Debug.Log("能力チェック対象 : " + data.minionName + " trigger=" + trigger + " effect=" + effect);
         Debug.Log(data.minionName + " abilities数 = " + data.abilities.Count);
 
-        Debug.Log(data.minionName +" abilities数 = " +data.abilities.Count);
+        Debug.Log(data.minionName + " abilities数 = " + data.abilities.Count);
         foreach (AbilityData ability in data.abilities)
         {
             Debug.Log("所持能力 : " + ability.trigger + " / " + ability.effect);
 
-            if (ability.trigger == trigger &&ability.effect == effect)
+            if (ability.trigger == trigger && ability.effect == effect)
             {
                 Debug.Log("能力一致 : " + trigger + " / " + effect);
 
@@ -86,8 +87,11 @@ public class Minion : MonoBehaviour, IDamageable
     }
 
     //能力発動
-    public void ActivateAbilities(AbilityTrigger trigger)
+    public bool ActivateAbilities(AbilityTrigger trigger)
     {
+
+        bool waitingForTarget = false;
+
         foreach (AbilityData ability in data.abilities)
         {
             if (ability.trigger != trigger)
@@ -104,7 +108,7 @@ public class Minion : MonoBehaviour, IDamageable
                         DeckManager.Instance.DrawCard(owner);
                     }
 
-                    Debug.Log(data.minionName + " の死亡時ドロー発動" );
+                    Debug.Log(data.minionName + " の死亡時ドロー発動");
 
                     break;
 
@@ -120,14 +124,18 @@ public class Minion : MonoBehaviour, IDamageable
 
                         case AbilityTarget.EnemyPlayer:
 
-                            Player enemy =TurnManager.Instance.GetEnemyPlayer();
+                            TurnManager.Instance.isSelectingAbilityTarget = true;
 
-                            if (enemy != null)
-                            {
-                                enemy.TakeDamage(ability.value);
-                            }
+                            TurnManager.Instance.abilityUser = this;
+
+                            TurnManager.Instance.selectedAbility = ability;
+
+                            waitingForTarget = true;
+
+                            Debug.Log("能力の対象プレイヤーを選んでください");
 
                             break;
+
 
                         case AbilityTarget.AllEnemies:
 
@@ -156,11 +164,18 @@ public class Minion : MonoBehaviour, IDamageable
 
                     owner.Heal(ability.value);
 
-                    Debug.Log(data.minionName +" の死亡時回復発動");
+                    Debug.Log(data.minionName + " の死亡時回復発動");
 
                     break;
             }
         }
+
+        if (trigger == AbilityTrigger.OnDeath && !waitingForTarget)
+        {
+            DestroyMinion();
+        }
+
+        return waitingForTarget;
     }
 
     //クリック
@@ -222,7 +237,7 @@ public class Minion : MonoBehaviour, IDamageable
 
             foreach (Minion minion in owner.minions)
             {
-                if (minion.HasAbility(AbilityTrigger.OnPlay,AbilityEffect.Guard))
+                if (minion.HasAbility(AbilityTrigger.OnPlay, AbilityEffect.Guard))
                 {
                     hasGuard = true;
 
@@ -250,7 +265,7 @@ public class Minion : MonoBehaviour, IDamageable
             //吸血
             Debug.Log("吸血チェック開始");
 
-            if (TurnManager.Instance.selectedMinion.HasAbility(AbilityTrigger.OnAttack,AbilityEffect.Lifesteal))
+            if (TurnManager.Instance.selectedMinion.HasAbility(AbilityTrigger.OnAttack, AbilityEffect.Lifesteal))
             {
                 Debug.Log("吸血発動");
 
@@ -310,7 +325,7 @@ public class Minion : MonoBehaviour, IDamageable
 
             Debug.Log("武器攻撃 hasGuard = " + hasGuard);
 
-            if (hasGuard &&!HasAbility(AbilityTrigger.OnPlay, AbilityEffect.Guard))
+            if (hasGuard && !HasAbility(AbilityTrigger.OnPlay, AbilityEffect.Guard))
             {
                 Debug.Log("守護がいるためこの使い魔は攻撃できません");
 
@@ -348,9 +363,9 @@ public class Minion : MonoBehaviour, IDamageable
 
         //対象選択終了
         TurnManager.Instance.isSelectingTarget = false;
-        TurnManager.Instance.selectedCard      = null;
-        TurnManager.Instance.selectedUser      = null;
-        TurnManager.Instance.selectedCardUI    = null;
+        TurnManager.Instance.selectedCard = null;
+        TurnManager.Instance.selectedUser = null;
+        TurnManager.Instance.selectedCardUI = null;
     }
 
     //ダメージを受ける
@@ -374,8 +389,33 @@ public class Minion : MonoBehaviour, IDamageable
     {
         Debug.Log(data.minionName + " は倒れた");
 
-        ActivateAbilities(AbilityTrigger.OnDeath);
+        bool hasDeathAbility = false;
 
+        foreach (AbilityData ability in data.abilities)
+        {
+            if (ability.trigger == AbilityTrigger.OnDeath)
+            {
+                hasDeathAbility = true;
+                break;
+            }
+        }
+
+        if (!hasDeathAbility)
+        {
+            DestroyMinion();
+            return;
+        }
+
+        bool waiting = ActivateAbilities(AbilityTrigger.OnDeath);
+
+        if (waiting)
+        {
+            return;
+        }
+    }
+
+    public void DestroyMinion()
+    {
         owner.minions.Remove(this);
 
         Destroy(gameObject);

@@ -67,6 +67,44 @@ public class Player : MonoBehaviour, IDamageable
     //HP表示がクリックされた
     public void OnClickPlayer()
     {
+        //能力対象選択中
+        if (TurnManager.Instance.isSelectingAbilityTarget)
+        {
+            AbilityData ability = TurnManager.Instance.selectedAbility;
+
+            TakeDamage(ability.value);
+
+            Debug.Log(playerName + " に " + ability.value + " ダメージ");
+
+            TurnManager.Instance.abilityUser.DestroyMinion();
+
+            TurnManager.Instance.isSelectingAbilityTarget = false;
+            TurnManager.Instance.selectedAbility = null;
+            TurnManager.Instance.abilityUser = null;
+
+            return;
+        }
+
+        if (TurnManager.Instance.isSelectingAbilityTarget)
+        {
+            //自分は選べない
+            if (this == TurnManager.Instance.abilityUser.owner)
+            {
+                Debug.Log("自分は選べません");
+                return;
+            }
+
+            TakeDamage(TurnManager.Instance.selectedAbility.value);
+
+            TurnManager.Instance.isSelectingAbilityTarget = false;
+            TurnManager.Instance.abilityUser = null;
+            TurnManager.Instance.selectedAbility = null;
+
+            Debug.Log("能力が発動しました");
+
+            return;
+        }
+
         //使い魔の攻撃対象選択中
         if (TurnManager.Instance.isSelectingMinionTarget)
         {

@@ -51,6 +51,18 @@ public class TurnManager : MonoBehaviour
     [HideInInspector]
     public Minion selectedMinion;
 
+    //能力対象選択中
+    [HideInInspector]
+    public bool isSelectingAbilityTarget = false;
+
+    //能力発動者
+    [HideInInspector]
+    public Minion abilityUser;
+
+    //発動する能力
+    [HideInInspector]
+    public AbilityData selectedAbility;
+
     private void Awake()
     {
         Instance = this;
