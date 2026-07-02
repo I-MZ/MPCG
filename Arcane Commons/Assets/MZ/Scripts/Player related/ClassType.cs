@@ -2,13 +2,11 @@
 
 public enum ClassType
 {
-    Neutral,
+    Neutral,　    //ニュートラル（クラスとしては選択できない共通クラス）
 
-    Knight,
+    Knight,　     //ナイト
 
-    Mage,
+    Necromancer,　//ネクロマンサー
 
-    Necromancer,
-
-    Thief
+    Thief         //シーフ
 }

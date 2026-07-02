@@ -224,22 +224,38 @@ public class Player : MonoBehaviour, IDamageable
         TurnManager.Instance.selectedCardUI = null;
     }
 
+    //エラー回避のためいったん即席版に
+    //デッキセーブ
     private void Start()
     {
         UpdateHPUI();
 
-        if (DeckDataManager.Instance != null)
+        if (DeckDataManager.Instance != null &&DeckDataManager.Instance.savedDecks.Count > 0)
         {
-            deck =
-                new List<CardData>
-                (
-                    DeckDataManager.Instance.savedDeck
-                );
+            deck = new List<CardData>(DeckDataManager.Instance.savedDecks[0].cards);
 
-            Debug.Log
-            (
-                playerName + " デッキ読込 : " + deck.Count
-            );
+            Debug.Log(playerName + " デッキ読込 : " + deck.Count);
         }
     }
+
+    //一旦コメントアウト
+    //デッキセーブ
+    //    private void Start()
+    //    {
+    //        UpdateHPUI();
+
+    //        if (DeckDataManager.Instance != null)
+    //        {
+    //            deck =
+    //                new List<CardData>
+    //                (
+    //                    DeckDataManager.Instance.savedDeck
+    //                );
+
+    //            Debug.Log
+    //            (
+    //                playerName + " デッキ読込 : " + deck.Count
+    //            );
+    //        }
+    //    }
 }

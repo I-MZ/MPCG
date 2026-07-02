@@ -1,23 +1,19 @@
 //デッキ編集画面全体
 
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
 using UnityEngine.SceneManagement;
 
 public class DeckBuildManager : MonoBehaviour
 {
     [Header("現在作成中デッキ")]
-    //public DeckSaveData currentDeckData =new DeckSaveData(); エラー回避
-    public List<CardData> currentDeck = new List<CardData>();
+    public DeckSaveData currentDeckData = new DeckSaveData();
 
     [Header("デッキ枚数表示")]
     public TMP_Text deckCountText;
 
     [Header("追加可能カード")]
     public CardData swordCard;
-
     public CardData healCard;
 
     [Header("デッキ一覧表示場所")]
@@ -31,25 +27,18 @@ public class DeckBuildManager : MonoBehaviour
         UpdateDeckUI();
     }
 
-    // カード追加
+    //カード追加
     public void AddCard(CardData card)
     {
-        //currentDeckData.cards.Add(card); エラー回避
-        currentDeck.Add(card);
+        currentDeckData.cards.Add(card);
 
         Debug.Log(card.cardName + " を追加");
 
-        // 一覧表示生成
-        GameObject textObj =Instantiate
-            (
-                cardNameTextPrefab,
-                deckListContent
-            );
+        GameObject textObj =
+            Instantiate(cardNameTextPrefab, deckListContent);
 
-        //TMP_Text text =textObj.GetComponent<TMP_Text>(); よくわからん奴
-        //text.text = card.cardName;
-
-        DeckListItem item = textObj.GetComponent<DeckListItem>();
+        DeckListItem item =
+            textObj.GetComponent<DeckListItem>();
 
         item.Setup(card, this);
 
@@ -59,8 +48,7 @@ public class DeckBuildManager : MonoBehaviour
     //カード削除
     public void RemoveCard(CardData card, GameObject itemObject)
     {
-        //currentDeckData.cards.Remove(card); エラー回避
-        currentDeck.Remove(card);
+        currentDeckData.cards.Remove(card);
 
         Destroy(itemObject);
 
@@ -69,28 +57,52 @@ public class DeckBuildManager : MonoBehaviour
         Debug.Log(card.cardName + " を削除");
     }
 
-    // デッキUI更新
+    //デッキUI更新
     public void UpdateDeckUI()
     {
-        deckCountText.text ="デッキ枚数 : " + currentDeck.Count;
+        deckCountText.text =
+            "デッキ枚数 : " + currentDeckData.cards.Count;
     }
 
-    // Sword追加ボタン
+    //Sword追加
     public void AddSword()
     {
         AddCard(swordCard);
     }
 
-    // Heal追加ボタン
+    //Heal追加
     public void AddHeal()
     {
         AddCard(healCard);
     }
 
+    //新規デッキ作成
+    public void CreateNewDeck()
+    {
+        currentDeckData = new DeckSaveData();
+
+        currentDeckData.deckName = "新しいデッキ";
+
+        DeckDataManager.Instance.currentDeckIndex = -1;
+
+        UpdateDeckUI();
+
+        Debug.Log("新規デッキ作成");
+    }
+
     //デッキ保存
     public void SaveDeck()
     {
-        DeckDataManager.Instance.SaveDeck(currentDeck);
+        if (DeckDataManager.Instance.currentDeckIndex == -1)
+        {
+            //新規デッキ
+            DeckDataManager.Instance.SaveNewDeck(currentDeckData);
+        }
+        else
+        {
+            //既存デッキを更新
+            DeckDataManager.Instance.UpdateDeck(currentDeckData);
+        }
     }
 
     public void StartBattle()
