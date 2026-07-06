@@ -42,11 +42,7 @@ public class DeckBuildManager : MonoBehaviour
 
         Debug.Log(card.cardName + " ‚ð’Ç‰Á");
 
-        GameObject textObj = Instantiate(cardNameTextPrefab, deckListContent);
-
-        DeckListItem item = textObj.GetComponent<DeckListItem>();
-
-        item.Setup(card, this);
+        RefreshCardList();
 
         UpdateDeckUI();
     }
@@ -56,7 +52,7 @@ public class DeckBuildManager : MonoBehaviour
     {
         currentDeckData.cards.Remove(card);
 
-        Destroy(itemObject);
+        RefreshCardList();
 
         UpdateDeckUI();
 
