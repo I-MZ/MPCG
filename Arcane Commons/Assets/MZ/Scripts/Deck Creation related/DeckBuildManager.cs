@@ -24,7 +24,15 @@ public class DeckBuildManager : MonoBehaviour
 
     private void Start()
     {
+        //編集中デッキがある
+        if (DeckDataManager.Instance.currentDeckIndex >= 0)
+        {
+            currentDeckData = DeckDataManager.Instance.LoadDeck(DeckDataManager.Instance.currentDeckIndex);
+        }
+
         UpdateDeckUI();
+
+        RefreshCardList();
     }
 
     //カード追加
@@ -34,11 +42,9 @@ public class DeckBuildManager : MonoBehaviour
 
         Debug.Log(card.cardName + " を追加");
 
-        GameObject textObj =
-            Instantiate(cardNameTextPrefab, deckListContent);
+        GameObject textObj = Instantiate(cardNameTextPrefab, deckListContent);
 
-        DeckListItem item =
-            textObj.GetComponent<DeckListItem>();
+        DeckListItem item = textObj.GetComponent<DeckListItem>();
 
         item.Setup(card, this);
 
@@ -57,11 +63,30 @@ public class DeckBuildManager : MonoBehaviour
         Debug.Log(card.cardName + " を削除");
     }
 
+    //カード一覧更新
+    public void RefreshCardList()
+    {
+        //一覧を一旦空にする
+        foreach (Transform child in deckListContent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        //カード一覧生成
+        foreach (CardData card in currentDeckData.cards)
+        {
+            GameObject textObj = Instantiate(cardNameTextPrefab, deckListContent);
+
+            DeckListItem item = textObj.GetComponent<DeckListItem>();
+
+            item.Setup(card, this);
+        }
+    }
+
     //デッキUI更新
     public void UpdateDeckUI()
     {
-        deckCountText.text =
-            "デッキ枚数 : " + currentDeckData.cards.Count;
+        deckCountText.text = "デッキ枚数 : " + currentDeckData.cards.Count;
     }
 
     //Sword追加
