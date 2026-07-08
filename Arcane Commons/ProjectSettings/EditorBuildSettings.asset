@@ -9,10 +9,22 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/MZ/Test/DeckBuildScene.unity
+    path: Assets/MZ/Scene/TitleScene.unity
+    guid: ea94789b7bf348f4e8a83d7d9e7a7687
+  - enabled: 1
+    path: Assets/MZ/Scene/LobbyScena.unity
+    guid: 3a3a7db02177aba4ea109d97557f5249
+  - enabled: 1
+    path: Assets/MZ/Scene/DeckSelectScene.unity
+    guid: 86819405e81edb040a73b771b8b4ea4f
+  - enabled: 1
+    path: Assets/MZ/Scene/DeckBuildScene.unity
     guid: 49f6a6a2c6f6faa4787824494fc84219
   - enabled: 1
-    path: Assets/MZ/Test/BattleScene.unity
+    path: Assets/MZ/Scene/RoomScene.unity
+    guid: c1f76bbc8faa2f9478eb57a763fc6ba0
+  - enabled: 1
+    path: Assets/MZ/Scene/BattleScene.unity
     guid: 20bebb141a95f29488ed83ae56a73e0f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

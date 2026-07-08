@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 2686731588054116948}
   - component: {fileID: 8482136066499830596}
   - component: {fileID: 64359879641196410}
+  - component: {fileID: 1266257762549516217}
   m_Layer: 5
   m_Name: DeckSelectItem
   m_TagString: Untagged
@@ -258,7 +259,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8482136066499830596}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1266257762549516217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410259660264952794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09ec56517fa8c9449230b07916ff5f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeckSelectItem
+  deckNameText: {fileID: 1826915595578404623}
+  classText: {fileID: 3373979166743068644}
 --- !u!1 &6246507662541946447
 GameObject:
   m_ObjectHideFlags: 0
