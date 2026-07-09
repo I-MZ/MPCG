@@ -37,6 +37,14 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene("DeckBuildScene");
     }
 
+    //ルームからデッキ編集へ
+    public void LoadDeckSelectForRoom()
+    {
+        DeckDataManager.Instance.isSelectingDeckForRoom = true;
+
+        SceneManager.LoadScene("DeckSelectScene");
+    }
+
     //ルームへ
     public void LoadRoom()
     {

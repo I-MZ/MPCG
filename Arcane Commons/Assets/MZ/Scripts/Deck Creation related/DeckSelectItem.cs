@@ -36,6 +36,15 @@ public class DeckSelectItem : MonoBehaviour
     {
         DeckDataManager.Instance.LoadDeck(deckIndex);
 
-        SceneManager.LoadScene("DeckBuildScene");
+        if (DeckDataManager.Instance.isSelectingDeckForRoom)
+        {
+            DeckDataManager.Instance.isSelectingDeckForRoom = false;
+
+            SceneManager.LoadScene("RoomScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("DeckBuildScene");
+        }
     }
 }

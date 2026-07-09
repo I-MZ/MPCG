@@ -13,6 +13,9 @@ public class DeckDataManager : MonoBehaviour
     //現在編集中のデッキ番号
     public int currentDeckIndex = -1;
 
+    //ルームからデッキ変更中か
+    public bool isSelectingDeckForRoom = false;
+
     private void Awake()
     {
         if (Instance == null)
