@@ -41,6 +41,8 @@ public class DeckDataManager : MonoBehaviour
         savedDecks.Add(copy);
 
         Debug.Log(copy.deckName + " ‚ğ•Û‘¶");
+
+        Debug.Log("•Û‘¶ƒfƒbƒL” : " + savedDecks.Count);
     }
 
     //“Ç‚İ‚İ

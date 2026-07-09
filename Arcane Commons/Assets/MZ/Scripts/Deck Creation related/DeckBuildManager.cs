@@ -132,6 +132,10 @@ public class DeckBuildManager : MonoBehaviour
             //既存デッキを更新
             DeckDataManager.Instance.UpdateDeck(currentDeckData);
         }
+
+        SceneLoader sceneLoader = FindFirstObjectByType<SceneLoader>();
+
+        sceneLoader.LoadDeckSelect();
     }
 
     public void StartBattle()

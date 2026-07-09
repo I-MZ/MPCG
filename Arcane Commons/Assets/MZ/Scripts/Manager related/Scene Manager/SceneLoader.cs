@@ -29,6 +29,14 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene("DeckBuildScene");
     }
 
+    //新規デッキ作成へ
+    public void LoadNewDeckBuild()
+    {
+        DeckDataManager.Instance.currentDeckIndex = -1;
+
+        SceneManager.LoadScene("DeckBuildScene");
+    }
+
     //ルームへ
     public void LoadRoom()
     {
