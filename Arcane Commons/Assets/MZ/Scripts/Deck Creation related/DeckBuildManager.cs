@@ -24,10 +24,16 @@ public class DeckBuildManager : MonoBehaviour
 
     private void Start()
     {
-        //編集中デッキがある
+        //編集なら読み込む
         if (DeckDataManager.Instance.currentDeckIndex >= 0)
         {
             currentDeckData = DeckDataManager.Instance.LoadDeck(DeckDataManager.Instance.currentDeckIndex);
+        }
+
+        //新規なら初期化
+        else
+        {
+            CreateNewDeck();
         }
 
         UpdateDeckUI();
@@ -105,6 +111,8 @@ public class DeckBuildManager : MonoBehaviour
         currentDeckData.deckName = "新しいデッキ";
 
         DeckDataManager.Instance.currentDeckIndex = -1;
+
+        RefreshCardList();
 
         UpdateDeckUI();
 
