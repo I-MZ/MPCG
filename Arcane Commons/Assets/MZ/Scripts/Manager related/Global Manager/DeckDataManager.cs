@@ -14,7 +14,13 @@ public class DeckDataManager : MonoBehaviour
     public int currentDeckIndex = -1;
 
     //ルームからデッキ変更中か
-    public bool isSelectingDeckForRoom = false;
+    public enum DeckSelectMode
+    {
+        Manage,         // ロビーから
+        SelectForRoom   // ルームから
+    }
+
+    public DeckSelectMode deckSelectMode = DeckSelectMode.Manage;
 
     private void Awake()
     {

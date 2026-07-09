@@ -3,6 +3,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static DeckDataManager;
 
 public class DeckBuildManager : MonoBehaviour
 {
@@ -132,16 +133,56 @@ public class DeckBuildManager : MonoBehaviour
             //既存デッキを更新
             DeckDataManager.Instance.UpdateDeck(currentDeckData);
         }
+    }
+
+    //保存して戻る
+    public void SaveAndBack()
+    {
+        SaveDeck();
 
         SceneLoader sceneLoader = FindFirstObjectByType<SceneLoader>();
 
-        sceneLoader.LoadDeckSelect();
+        if (DeckDataManager.Instance.deckSelectMode == DeckSelectMode.SelectForRoom)
+        {
+            sceneLoader.LoadRoom();
+        }
+        else
+        {
+            sceneLoader.LoadDeckSelect();
+        }
     }
 
+    //バトル開始
     public void StartBattle()
     {
         SaveDeck();
 
         SceneManager.LoadScene("BattleScene");
     }
+
+    //デッキ保存
+    //public void SaveDeck()
+    //{
+    //    if (DeckDataManager.Instance.currentDeckIndex == -1)
+    //    {
+    //        //新規デッキ
+    //        DeckDataManager.Instance.SaveNewDeck(currentDeckData);
+    //    }
+    //    else
+    //    {
+    //        //既存デッキを更新
+    //        DeckDataManager.Instance.UpdateDeck(currentDeckData);
+    //    }
+
+    //    SceneLoader sceneLoader = FindFirstObjectByType<SceneLoader>();
+
+    //    sceneLoader.LoadDeckSelect();
+    //}
+
+    //public void StartBattle()
+    //{
+    //    SaveDeck();
+
+    //    SceneManager.LoadScene("BattleScene");
+    //}
 }

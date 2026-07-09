@@ -1437,7 +1437,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1692969008}
         m_TargetAssemblyTypeName: DeckBuildManager, Assembly-CSharp
-        m_MethodName: SaveDeck
+        m_MethodName: SaveAndBack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1699,6 +1699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeckDataManager
   savedDecks: []
   currentDeckIndex: -1
+  deckSelectMode: 0
 --- !u!4 &1269300284
 Transform:
   m_ObjectHideFlags: 0

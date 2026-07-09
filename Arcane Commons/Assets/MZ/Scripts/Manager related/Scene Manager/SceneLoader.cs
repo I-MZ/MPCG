@@ -2,6 +2,7 @@
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static DeckDataManager;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -40,10 +41,16 @@ public class SceneLoader : MonoBehaviour
     //ルームからデッキ編集へ
     public void LoadDeckSelectForRoom()
     {
-        DeckDataManager.Instance.isSelectingDeckForRoom = true;
+        DeckDataManager.Instance.deckSelectMode = DeckSelectMode.SelectForRoom;
 
         SceneManager.LoadScene("DeckSelectScene");
     }
+    //public void LoadDeckSelectForRoom()
+    //{
+    //    DeckDataManager.Instance.isSelectingDeckForRoom = true;
+
+    //    SceneManager.LoadScene("DeckSelectScene");
+    //}
 
     //ルームへ
     public void LoadRoom()

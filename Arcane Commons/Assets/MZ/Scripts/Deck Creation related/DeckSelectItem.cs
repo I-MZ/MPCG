@@ -2,8 +2,9 @@
 
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using static DeckDataManager;
 
 public class DeckSelectItem : MonoBehaviour
 {
@@ -36,10 +37,8 @@ public class DeckSelectItem : MonoBehaviour
     {
         DeckDataManager.Instance.LoadDeck(deckIndex);
 
-        if (DeckDataManager.Instance.isSelectingDeckForRoom)
+        if (DeckDataManager.Instance.deckSelectMode == DeckSelectMode.SelectForRoom)
         {
-            DeckDataManager.Instance.isSelectingDeckForRoom = false;
-
             SceneManager.LoadScene("RoomScene");
         }
         else
@@ -47,4 +46,19 @@ public class DeckSelectItem : MonoBehaviour
             SceneManager.LoadScene("DeckBuildScene");
         }
     }
+    //public void OpenDeck()
+    //{
+    //    DeckDataManager.Instance.LoadDeck(deckIndex);
+
+    //    if (DeckDataManager.Instance.isSelectingDeckForRoom)
+    //    {
+    //        DeckDataManager.Instance.isSelectingDeckForRoom = false;
+
+    //        SceneManager.LoadScene("RoomScene");
+    //    }
+    //    else
+    //    {
+    //        SceneManager.LoadScene("DeckBuildScene");
+    //    }
+    //}
 }
