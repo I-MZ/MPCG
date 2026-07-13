@@ -3,8 +3,10 @@
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Player : MonoBehaviour, IDamageable
+//public class Player : MonoBehaviour, IDamageable
+public class Player : NetworkBehaviour, IDamageable
 {
     [Header("Šî–{î•ñ")]
     public string playerName;
