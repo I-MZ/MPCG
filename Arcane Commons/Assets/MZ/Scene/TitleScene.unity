@@ -994,6 +994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeckDataManager
   savedDecks: []
   currentDeckIndex: -1
+  deckSelectMode: 0
 --- !u!4 &2058267876
 Transform:
   m_ObjectHideFlags: 0

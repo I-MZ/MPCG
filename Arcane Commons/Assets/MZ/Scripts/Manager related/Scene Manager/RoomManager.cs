@@ -8,9 +8,16 @@ public class RoomManager : MonoBehaviour
     [Header("現在使用中デッキ")]
     public TMP_Text deckNameText;
 
+    [Header("プレイヤー一覧")]
+    public Transform playerListContent;
+
+    public GameObject roomPlayerItemPrefab;
+
     private void Start()
     {
         UpdateDeckUI();
+
+        AddPlayer("Player1");
     }
 
     //使用デッキ表示更新
@@ -27,5 +34,18 @@ public class RoomManager : MonoBehaviour
                 DeckDataManager.Instance.currentDeckIndex);
 
         deckNameText.text = deck.deckName;
+    }
+
+    public void AddPlayer(string playerName)
+    {
+        Debug.Log("プレイヤー追加 : " + playerName);
+
+        GameObject obj =
+            Instantiate(roomPlayerItemPrefab, playerListContent);
+
+        RoomPlayerItem item =
+            obj.GetComponent<RoomPlayerItem>();
+
+        item.SetPlayerName(playerName);
     }
 }

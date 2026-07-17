@@ -9,13 +9,11 @@ using Mirror;
 public class Player : NetworkBehaviour, IDamageable
 {
     [Header("基本情報")]
+    [SyncVar]
     public string playerName;
 
     [Header("HP")]
     public int hp = 20;
-
-    [Header("HP表示")]
-    public TMP_Text hpText;
 
     [Header("所持デッキ")]
     public List<CardData> deck = new List<CardData>();
@@ -33,13 +31,14 @@ public class Player : NetworkBehaviour, IDamageable
     public Transform handArea;
 
     //ダメージを受ける
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage)//koko
     {
         hp -= damage;
 
         Debug.Log(playerName + " HP : " + hp);
 
-        UpdateHPUI();
+        //UpdateHPUI();
+        //PlayerUI.Instance.UpdateHPUI(this);
 
 
 
@@ -53,17 +52,12 @@ public class Player : NetworkBehaviour, IDamageable
     }
 
     //回復
-    public void Heal(int value)
+    public void Heal(int value)//koko
     {
         hp += value;
         Debug.Log(playerName + " が " + value + " 回復");
-        UpdateHPUI();
-    }
-
-    //HP表示更新
-    public void UpdateHPUI()
-    {
-        hpText.text =playerName + " HP : " + hp;
+        //UpdateHPUI();
+        //PlayerUI.Instance.UpdateHPUI(this);
     }
 
     //HP表示がクリックされた
@@ -226,19 +220,32 @@ public class Player : NetworkBehaviour, IDamageable
         TurnManager.Instance.selectedCardUI = null;
     }
 
-    //エラー回避のためいったん即席版に
+    //さらにエラー回避のためいったん即席版に
     //デッキセーブ
     private void Start()
     {
-        UpdateHPUI();
-
-        if (DeckDataManager.Instance != null &&DeckDataManager.Instance.savedDecks.Count > 0)
+        if (DeckDataManager.Instance != null &&
+            DeckDataManager.Instance.savedDecks.Count > 0)
         {
             deck = new List<CardData>(DeckDataManager.Instance.savedDecks[0].cards);
 
             Debug.Log(playerName + " デッキ読込 : " + deck.Count);
         }
     }
+
+    //エラー回避のためいったん即席版に
+    //デッキセーブ
+    //private void Start()
+    //{
+    //    UpdateHPUI();
+
+    //    if (DeckDataManager.Instance != null &&DeckDataManager.Instance.savedDecks.Count > 0)
+    //    {
+    //        deck = new List<CardData>(DeckDataManager.Instance.savedDecks[0].cards);
+
+    //        Debug.Log(playerName + " デッキ読込 : " + deck.Count);
+    //    }
+    //}
 
     //一旦コメントアウト
     //デッキセーブ
