@@ -17,7 +17,7 @@ public class RoomManager : MonoBehaviour
     {
         UpdateDeckUI();
 
-        AddPlayer("Player1");
+        //AddPlayer("Player1");
     }
 
     //使用デッキ表示更新

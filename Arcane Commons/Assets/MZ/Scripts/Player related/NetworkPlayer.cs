@@ -10,8 +10,17 @@ public class NetworkPlayer : NetworkBehaviour
         battlePlayer = GetComponent<Player>();
     }
 
-    public override void OnStartLocalPlayer()
+    public override void OnStartClient()
     {
-        Debug.Log("自分のプレイヤーが生成されました");
+        RoomPlayerManager.Instance.AddPlayer(this);
+
+        Debug.Log("参加プレイヤー追加");
     }
 }
+
+//public override void OnStartLocalPlayer()
+//    {
+//        Debug.Log("自分のプレイヤーが生成されました");
+
+//        RoomPlayerManager.Instance.AddPlayer(this);
+//    }
