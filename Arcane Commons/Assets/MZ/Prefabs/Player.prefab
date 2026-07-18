@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2169870974656412380}
   - component: {fileID: 6032693399596903644}
   - component: {fileID: 797927259639025256}
+  - component: {fileID: 8173726282372849096}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -64,9 +65,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   playerName: 
   hp: 20
-  hpText: {fileID: 0}
   deck: []
   hand: []
   minionArea: {fileID: 0}
   minions: []
   handArea: {fileID: 0}
+--- !u!114 &8173726282372849096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306092479043697479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e6f4e11ce865d4ab3e6504d8e67b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NetworkPlayer
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  battlePlayer: {fileID: 797927259639025256}

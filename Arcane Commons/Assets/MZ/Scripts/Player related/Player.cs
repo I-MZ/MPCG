@@ -3,13 +3,13 @@
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
+//using Mirror;
 
-//public class Player : MonoBehaviour, IDamageable
-public class Player : NetworkBehaviour, IDamageable
+public class Player : MonoBehaviour, IDamageable
+//public class Player : NetworkBehaviour, IDamageable
 {
     [Header("Šî–{î•ñ")]
-    [SyncVar]
+    //[SyncVar]
     public string playerName;
 
     [Header("HP")]
