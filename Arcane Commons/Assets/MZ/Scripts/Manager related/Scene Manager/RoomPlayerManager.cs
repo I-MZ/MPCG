@@ -25,7 +25,6 @@ public class RoomPlayerManager : MonoBehaviour
 
         Debug.Log("プレイヤー参加 : " + player.netId);
 
-        roomManager.AddPlayer("Player " + player.netId);
-        //roomManager.AddPlayer(player.playerName);
+        roomManager.RefreshPlayerList(players);
     }
 }

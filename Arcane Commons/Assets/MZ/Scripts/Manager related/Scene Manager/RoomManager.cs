@@ -48,4 +48,26 @@ public class RoomManager : MonoBehaviour
 
         item.SetPlayerName(playerName);
     }
+
+    public void RefreshPlayerList(System.Collections.Generic.List<NetworkPlayer> players)
+    {
+        // ¡‚ ‚éˆê——‚ğ‘S•”íœ
+        foreach (Transform child in playerListContent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // ÅV‚Ìˆê——‚ğ¶¬
+        foreach (NetworkPlayer player in players)
+        {
+            GameObject obj =
+                Instantiate(roomPlayerItemPrefab, playerListContent);
+
+            RoomPlayerItem item =
+                obj.GetComponent<RoomPlayerItem>();
+
+            //item.SetPlayerName("Player " + player.netId);
+            item.SetPlayerName(player.playerName);
+        }
+    }
 }
