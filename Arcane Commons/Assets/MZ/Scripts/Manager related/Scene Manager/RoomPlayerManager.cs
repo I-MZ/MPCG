@@ -5,6 +5,8 @@ public class RoomPlayerManager : MonoBehaviour
 {
     public static RoomPlayerManager Instance;
 
+    public NetworkPlayer localPlayer;
+
     [Header("参加プレイヤー")]
     public List<NetworkPlayer> players = new List<NetworkPlayer>();
 
@@ -26,5 +28,18 @@ public class RoomPlayerManager : MonoBehaviour
         Debug.Log("プレイヤー参加 : " + player.netId);
 
         roomManager.RefreshPlayerList(players);
+    }
+
+    public void RefreshRoom()
+    {
+        roomManager.RefreshPlayerList(players);
+    }
+
+    public void ToggleReady()
+    {
+        if (localPlayer == null)
+            return;
+
+        localPlayer.CmdToggleReady();
     }
 }
