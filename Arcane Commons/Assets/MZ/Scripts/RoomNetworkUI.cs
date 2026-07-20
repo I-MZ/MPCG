@@ -12,6 +12,14 @@ public class RoomNetworkUI : MonoBehaviour
     [Header("ホストIP表示")]
     public TMP_Text hostIPText;
 
+    [Header("ゲーム開始ボタン")]
+    public GameObject startButton;
+
+    private void Start()
+    {
+        startButton.SetActive(false);
+    }
+
     //ルーム作成
     public void CreateRoom()
     {
@@ -25,6 +33,10 @@ public class RoomNetworkUI : MonoBehaviour
         {
             hostIPText.text = "ホストIP : " + ip;
         }
+
+        startButton.SetActive(true);
+
+        Debug.Log("Host開始");
     }
 
     //ルーム参加
