@@ -36,18 +36,19 @@ public class RoomManager : MonoBehaviour
         deckNameText.text = deck.deckName;
     }
 
-    public void AddPlayer(string playerName)
-    {
-        Debug.Log("プレイヤー追加 : " + playerName);
+    //使わなくなったよ
+    //public void AddPlayer(string playerName)
+    //{
+    //    Debug.Log("プレイヤー追加 : " + playerName);
 
-        GameObject obj =
-            Instantiate(roomPlayerItemPrefab, playerListContent);
+    //    GameObject obj =
+    //        Instantiate(roomPlayerItemPrefab, playerListContent);
 
-        RoomPlayerItem item =
-            obj.GetComponent<RoomPlayerItem>();
+    //    RoomPlayerItem item =
+    //        obj.GetComponent<RoomPlayerItem>();
 
-        item.SetPlayerName(playerName);
-    }
+    //    item.SetPlayerName(playerName);
+    //}
 
     public void RefreshPlayerList(System.Collections.Generic.List<NetworkPlayer> players)
     {
@@ -67,7 +68,7 @@ public class RoomManager : MonoBehaviour
                 obj.GetComponent<RoomPlayerItem>();
 
             //item.SetPlayerName("Player " + player.netId);
-            item.SetPlayerName(player.playerName);
+            item.SetData(player.playerName,player.isReady);
         }
     }
 }

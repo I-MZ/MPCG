@@ -6,6 +6,9 @@ public class NetworkPlayer : NetworkBehaviour
     [SyncVar]
     public string playerName;
 
+    [SyncVar]
+    public bool isReady = false;
+
     private Player battlePlayer;
 
     private void Awake()
@@ -23,5 +26,11 @@ public class NetworkPlayer : NetworkBehaviour
         RoomPlayerManager.Instance.AddPlayer(this);
 
         Debug.Log("参加プレイヤー追加");
+    }
+
+    [Command]
+    public void CmdSetReady(bool ready)
+    {
+        isReady = ready;
     }
 }
