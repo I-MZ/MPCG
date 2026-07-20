@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
+    public static RoomManager Instance;//追加7/21
+
     [Header("現在使用中デッキ")]
     public TMP_Text deckNameText;
 
@@ -36,20 +38,6 @@ public class RoomManager : MonoBehaviour
         deckNameText.text = deck.deckName;
     }
 
-    //使わなくなったよ
-    //public void AddPlayer(string playerName)
-    //{
-    //    Debug.Log("プレイヤー追加 : " + playerName);
-
-    //    GameObject obj =
-    //        Instantiate(roomPlayerItemPrefab, playerListContent);
-
-    //    RoomPlayerItem item =
-    //        obj.GetComponent<RoomPlayerItem>();
-
-    //    item.SetPlayerName(playerName);
-    //}
-
     public void RefreshPlayerList(System.Collections.Generic.List<NetworkPlayer> players)
     {
         // 今ある一覧を全部削除
@@ -71,4 +59,23 @@ public class RoomManager : MonoBehaviour
             item.SetData(player.playerName,player.isReady);
         }
     }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 }
+
+//使わなくなったよ　 RefreshPlayerListのうえにあった
+//public void AddPlayer(string playerName)
+//{
+//    Debug.Log("プレイヤー追加 : " + playerName);
+
+//    GameObject obj =
+//        Instantiate(roomPlayerItemPrefab, playerListContent);
+
+//    RoomPlayerItem item =
+//        obj.GetComponent<RoomPlayerItem>();
+
+//    item.SetPlayerName(playerName);
+//}

@@ -1,90 +1,109 @@
-using System.Collections.Generic;
-using UnityEngine;
+//設計上不要になった。ありがとう、お疲れ様
 
-public class RoomPlayerManager : MonoBehaviour
-{
-    public static RoomPlayerManager Instance;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-    public NetworkPlayer localPlayer;
+//public class RoomPlayerManager : MonoBehaviour
+//{
+//    public static RoomPlayerManager Instance;
 
-    public RoomNetworkUI roomNetworkUI;
+//    public NetworkPlayer localPlayer;
 
-    [Header("参加プレイヤー")]
-    public List<NetworkPlayer> players = new List<NetworkPlayer>();
+//    public RoomNetworkUI roomNetworkUI;
 
-    [Header("UI管理")]
-    public RoomManager roomManager;
+//    [Header("UI管理")]
+//    public RoomManager roomManager;
 
-    private void Start()
-    {
-        RefreshPlayerListFromNetwork();
-    }
+//    [Header("参加プレイヤー")]
+//    public List<NetworkPlayer> players = new List<NetworkPlayer>();
 
-    public void RefreshPlayerListFromNetwork()
-    {
-        players.Clear();
+//    //private void Start()
+//    //{
+//    //    RefreshPlayerListFromNetwork();
+//    //}
+//    private void OnEnable()
+//    {
+//        Invoke(nameof(RefreshPlayerListFromNetwork), 0.1f);
+//    }
 
-        NetworkPlayer[] allPlayers =
-            FindObjectsOfType<NetworkPlayer>();
+//    public void RefreshPlayerListFromNetwork()
+//    {
+//        players.Clear();
 
-        foreach (NetworkPlayer player in allPlayers)
-        {
-            if (!players.Contains(player))
-            {
-                players.Add(player);
+//        NetworkPlayer[] allPlayers =
+//            FindObjectsOfType<NetworkPlayer>();
 
-                if (player.isLocalPlayer)
-                {
-                    localPlayer = player;
-                }
-            }
-        }
+//        foreach (NetworkPlayer player in allPlayers)
+//        {
+//            if (!players.Contains(player))
+//            {
+//                players.Add(player);
 
-        roomManager.RefreshPlayerList(players);
+//                if (player.isLocalPlayer)
+//                {
+//                    localPlayer = player;
+//                }
+//            }
+//        }
 
-        UpdateReadyButton();
-    }
+//        Debug.Log("プレイヤー数 : " + players.Count);
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+//        roomManager.RefreshPlayerList(players);
 
-    public void AddPlayer(NetworkPlayer player)
-    {
-        if (players.Contains(player))
-            return;
+//        UpdateReadyButton();
+//    }
 
-        players.Add(player);
+//    private void Awake()
+//    {
+//        Instance = this;
+//    }
 
-        Debug.Log("プレイヤー参加 : " + player.netId);
+//    public void AddPlayer(NetworkPlayer player)
+//    {
+//        if (players.Contains(player))
+//            return;
 
-        roomManager.RefreshPlayerList(players);
-    }
+//        players.Add(player);
 
-    public void RefreshRoom()
-    {
-        roomManager.RefreshPlayerList(players);
+//        Debug.Log("プレイヤー参加 : " + player.netId);
 
-        UpdateReadyButton();
-    }
+//        roomManager.RefreshPlayerList(players);
+//    }
 
-    public void ToggleReady()
-    {
-        if (localPlayer == null)
-            return;
+//    public void RefreshRoom()
+//    {
+//        roomManager.RefreshPlayerList(players);
 
-        localPlayer.CmdToggleReady();
-    }
+//        UpdateReadyButton();
+//    }
 
-    public void UpdateReadyButton()
-    {
-        if (localPlayer == null)
-            return;
+//    public void ToggleReady()
+//    {
+//        if (localPlayer == null)
+//            return;
 
-        if (roomNetworkUI.readyButtonText == null)
-            return;
+//        localPlayer.CmdToggleReady();
+//    }
 
-        roomNetworkUI.readyButtonText.text = localPlayer.isReady ? "キャンセル" : "準備完了";
-    }
-}
+//    public void UpdateReadyButton()
+//    {
+//        if (localPlayer == null)
+//            return;
+
+//        if (roomNetworkUI.readyButtonText == null)
+//            return;
+
+//        roomNetworkUI.readyButtonText.text = localPlayer.isReady ? "キャンセル" : "準備完了";
+//    }
+
+//    //一旦不要になったみたい
+//    //public void RefreshPlayerListFromNetwork()
+
+//    //public List<NetworkPlayer> Players
+//    //{
+//    //    get
+//    //    {
+//    //        return ArcaneNetworkManager.Instance.players;
+//    //    }
+//    //}
+//}
