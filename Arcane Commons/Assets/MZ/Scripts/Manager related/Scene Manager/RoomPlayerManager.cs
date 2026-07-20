@@ -7,11 +7,43 @@ public class RoomPlayerManager : MonoBehaviour
 
     public NetworkPlayer localPlayer;
 
+    public RoomNetworkUI roomNetworkUI;
+
     [Header("参加プレイヤー")]
     public List<NetworkPlayer> players = new List<NetworkPlayer>();
 
     [Header("UI管理")]
     public RoomManager roomManager;
+
+    private void Start()
+    {
+        RefreshPlayerListFromNetwork();
+    }
+
+    public void RefreshPlayerListFromNetwork()
+    {
+        players.Clear();
+
+        NetworkPlayer[] allPlayers =
+            FindObjectsOfType<NetworkPlayer>();
+
+        foreach (NetworkPlayer player in allPlayers)
+        {
+            if (!players.Contains(player))
+            {
+                players.Add(player);
+
+                if (player.isLocalPlayer)
+                {
+                    localPlayer = player;
+                }
+            }
+        }
+
+        roomManager.RefreshPlayerList(players);
+
+        UpdateReadyButton();
+    }
 
     private void Awake()
     {
@@ -33,6 +65,8 @@ public class RoomPlayerManager : MonoBehaviour
     public void RefreshRoom()
     {
         roomManager.RefreshPlayerList(players);
+
+        UpdateReadyButton();
     }
 
     public void ToggleReady()
@@ -41,5 +75,16 @@ public class RoomPlayerManager : MonoBehaviour
             return;
 
         localPlayer.CmdToggleReady();
+    }
+
+    public void UpdateReadyButton()
+    {
+        if (localPlayer == null)
+            return;
+
+        if (roomNetworkUI.readyButtonText == null)
+            return;
+
+        roomNetworkUI.readyButtonText.text = localPlayer.isReady ? "キャンセル" : "準備完了";
     }
 }

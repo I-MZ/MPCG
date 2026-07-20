@@ -2711,7 +2711,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomNetworkUI
   ipInputField: {fileID: 43008242}
   hostIPText: {fileID: 633808208}
-  startButton: {fileID: 0}
+  startButton: {fileID: 1947130556}
+  readyButtonText: {fileID: 1379789994}
 --- !u!1 &1296262194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2936,7 +2937,7 @@ GameObject:
   - component: {fileID: 1379789995}
   - component: {fileID: 1379789994}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Ready Button Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2981,7 +2982,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ready(TP)
+  m_text: Ready
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3187,6 +3188,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1828017817}
+  - {fileID: 1294110941}
   - {fileID: 1738759034}
   - {fileID: 2113738077}
   - {fileID: 852320634}
@@ -3197,7 +3199,6 @@ RectTransform:
   - {fileID: 2064986432}
   - {fileID: 291040095}
   - {fileID: 57507789}
-  - {fileID: 1294110941}
   - {fileID: 43008241}
   - {fileID: 633808207}
   m_Father: {fileID: 0}
@@ -3663,6 +3664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomPlayerManager
   localPlayer: {fileID: 0}
+  roomNetworkUI: {fileID: 1294110942}
   players: []
   roomManager: {fileID: 698655775}
 --- !u!1 &1843702313
@@ -3976,7 +3978,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1947130559}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1947130559
 MonoBehaviour:
   m_ObjectHideFlags: 0

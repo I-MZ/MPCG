@@ -12,4 +12,5 @@ public class RoomPlayerItem : MonoBehaviour
 
         readyStateText.text = isReady ? "€”õŠ®—¹" : "€”õ’†";
     }
+
 }

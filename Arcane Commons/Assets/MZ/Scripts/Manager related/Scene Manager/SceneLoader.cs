@@ -6,6 +6,8 @@ using static DeckDataManager;
 
 public class SceneLoader : MonoBehaviour
 {
+    public static string previousScene;
+
     //ƒ^ƒCƒgƒ‹‚Ö
     public void LoadTitle()
     {
