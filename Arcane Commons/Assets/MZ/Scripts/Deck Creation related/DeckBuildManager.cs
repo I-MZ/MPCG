@@ -136,21 +136,30 @@ public class DeckBuildManager : MonoBehaviour
     }
 
     //保存して戻る
+
     public void SaveAndBack()
     {
         SaveDeck();
 
         SceneLoader sceneLoader = FindFirstObjectByType<SceneLoader>();
 
-        if (DeckDataManager.Instance.deckSelectMode == DeckSelectMode.SelectForRoom)
-        {
-            sceneLoader.LoadRoom();
-        }
-        else
-        {
-            sceneLoader.LoadDeckSelect();
-        }
+        sceneLoader.LoadDeckSelect();
     }
+    //public void SaveAndBack()
+    //{
+    //    SaveDeck();
+
+    //    SceneLoader sceneLoader = FindFirstObjectByType<SceneLoader>();
+
+    //    if (DeckDataManager.Instance.deckSelectMode == DeckSelectMode.SelectForRoom)
+    //    {
+    //        sceneLoader.LoadRoom();
+    //    }
+    //    else
+    //    {
+    //        sceneLoader.LoadDeckSelect();
+    //    }
+    //}
 
     //バトル開始
     public void StartBattle()

@@ -17,6 +17,44 @@ public class ArcaneNetworkManager : NetworkManager
         Instance = this;
     }
 
+    //
+    public override void OnStartHost()
+    {
+        base.OnStartHost();
+        Debug.Log("===== OnStartHost =====");
+    }
+
+    public override void OnStopHost()
+    {
+        base.OnStopHost();
+        Debug.Log("===== OnStopHost =====");
+    }
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        Debug.Log("===== OnStartClient =====");
+    }
+
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+        Debug.Log("===== OnStopClient =====");
+    }
+
+    public override void OnClientDisconnect()
+    {
+        base.OnClientDisconnect();
+        Debug.Log("===== ClientDisconnect =====");
+    }
+
+    public override void OnServerDisconnect(NetworkConnectionToClient conn)
+    {
+        Debug.Log("===== ServerDisconnect =====");
+        base.OnServerDisconnect(conn);
+    }
+    //
+
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         base.OnServerAddPlayer(conn);

@@ -16,19 +16,22 @@ public class RoomNetworkUI : MonoBehaviour
 
     private void Start()
     {
-        if (NetworkServer.active)
+        if (hostIPText != null &&
+            NetworkSession.Instance != null)
         {
-            // 既にホスト中
-            //hostIPText.text ="ホストIP : " + GetLocalIPAddress();
-
-            startButton.SetActive(true);
-
-            RoomManager.Instance.RefreshPlayerList(ArcaneNetworkManager.Instance.players);
-
-            return;
+            hostIPText.text = "ホストIP : " + NetworkSession.Instance.hostIP;
         }
 
-        startButton.SetActive(false);
+        if (NetworkServer.active)
+        {
+            startButton.SetActive(true);
+        }
+        else
+        {
+            startButton.SetActive(false);
+        }
+
+        RoomManager.Instance.RefreshPlayerList(ArcaneNetworkManager.Instance.players);
     }
 
     //ルーム終了

@@ -38,9 +38,11 @@ public class MatchingNetworkUI : MonoBehaviour
     {
         NetworkManager.singleton.StartHost();
 
+        NetworkSession.Instance.hostIP = GetLocalIPAddress();
+
         Debug.Log("Host開始");
 
-        sceneLoader.LoadRoom();
+        //sceneLoader.LoadRoom();
     }
 
     public void JoinRoom()
@@ -54,7 +56,6 @@ public class MatchingNetworkUI : MonoBehaviour
 
         Debug.Log("Client開始");
 
-        sceneLoader.LoadRoom();
+        //sceneLoader.LoadRoom();
     }
-
 }

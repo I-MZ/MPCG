@@ -19,6 +19,8 @@ public class DeckSelectItem : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("DeckSelectItem Start");
+
         GetComponent<Button>().onClick.AddListener(OpenDeck);
     }
 
@@ -37,15 +39,35 @@ public class DeckSelectItem : MonoBehaviour
     {
         DeckDataManager.Instance.LoadDeck(deckIndex);
 
+        Debug.Log("現在のモード : " + DeckDataManager.Instance.deckSelectMode);
+
         if (DeckDataManager.Instance.deckSelectMode == DeckSelectMode.SelectForRoom)
         {
+            Debug.Log("ルームへ戻ります");
+
             SceneManager.LoadScene("RoomScene");
         }
         else
         {
+            Debug.Log("デッキ編集へ行きます");
+
             SceneManager.LoadScene("DeckBuildScene");
         }
     }
+
+    //public void OpenDeck()
+    //{
+    //    DeckDataManager.Instance.LoadDeck(deckIndex);
+
+    //    if (DeckDataManager.Instance.deckSelectMode == DeckSelectMode.SelectForRoom)
+    //    {
+    //        SceneManager.LoadScene("RoomScene");
+    //    }
+    //    else
+    //    {
+    //        SceneManager.LoadScene("DeckBuildScene");
+    //    }
+    //}
     //public void OpenDeck()
     //{
     //    DeckDataManager.Instance.LoadDeck(deckIndex);
