@@ -16,9 +16,25 @@ public class NetworkPlayer : NetworkBehaviour
         battlePlayer = GetComponent<Player>();
     }
 
+    //public override void OnStartServer()
+    //{
+    //    base.OnStartServer();
+
+    //    ArcaneNetworkManager.Instance.RegisterPlayer(this);
+    //}
+
+    //public override void OnStopServer()
+    //{
+    //    base.OnStopServer();
+
+    //    ArcaneNetworkManager.Instance.UnregisterPlayer(this);
+    //}
+
     public override void OnStartServer()
     {
         base.OnStartServer();
+
+        Debug.Log("===== OnStartServer =====");
 
         ArcaneNetworkManager.Instance.RegisterPlayer(this);
     }
@@ -26,6 +42,8 @@ public class NetworkPlayer : NetworkBehaviour
     public override void OnStopServer()
     {
         base.OnStopServer();
+
+        Debug.Log("===== OnStopServer =====");
 
         ArcaneNetworkManager.Instance.UnregisterPlayer(this);
     }

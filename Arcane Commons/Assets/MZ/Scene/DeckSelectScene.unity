@@ -1062,7 +1062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeckSelectManager
   content: {fileID: 1815925068}
-  deckItemPrefab: {fileID: 410259660264952794, guid: 6c1a004120d05dd4aaa67b690cf3e814, type: 3}
+  deckItemPrefab: {fileID: 410259660264952794, guid: b1e40f02d051a11409bf603059e96a6f, type: 3}
 --- !u!1 &1288044046
 GameObject:
   m_ObjectHideFlags: 0
