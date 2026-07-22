@@ -33,9 +33,13 @@ public class ArcaneNetworkManager : NetworkManager
 
         Debug.Log($"ìoò^ : {player.playerName}");
 
-        if (RoomPlayerManager.Instance != null)
+        //if (RoomPlayerManager.Instance != null)
+        //{
+        //    RoomPlayerManager.Instance.RefreshRoom();
+        //}
+        if (RoomManager.Instance != null)
         {
-            RoomPlayerManager.Instance.RefreshRoom();
+            RoomManager.Instance.RefreshPlayerList(players);
         }
     }
 
@@ -48,9 +52,13 @@ public class ArcaneNetworkManager : NetworkManager
 
         Debug.Log($"ëﬁèo : {player.playerName}");
 
-        if (RoomPlayerManager.Instance != null)
+        //if (RoomPlayerManager.Instance != null)
+        //{
+        //    RoomPlayerManager.Instance.RefreshRoom();
+        //}
+        if (RoomManager.Instance != null)
         {
-            RoomPlayerManager.Instance.RefreshRoom();
+            RoomManager.Instance.RefreshPlayerList(players);
         }
     }
 }

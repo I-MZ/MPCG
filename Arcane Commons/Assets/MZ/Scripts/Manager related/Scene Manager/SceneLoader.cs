@@ -40,6 +40,12 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene("DeckBuildScene");
     }
 
+    //マッチングシーンへ
+    public void LoadMatching()
+    {
+        SceneManager.LoadScene("MatchingScene");
+    }
+
     //ルームからデッキ編集へ
     public void LoadDeckSelectForRoom()
     {

@@ -3663,10 +3663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2c9a079fb83ef43a2a9fa2111f1f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomPlayerManager
-  localPlayer: {fileID: 0}
-  roomNetworkUI: {fileID: 1294110942}
-  players: []
-  roomManager: {fileID: 698655775}
 --- !u!1 &1843702313
 GameObject:
   m_ObjectHideFlags: 0

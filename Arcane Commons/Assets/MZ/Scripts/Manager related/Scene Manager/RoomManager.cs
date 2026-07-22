@@ -19,6 +19,9 @@ public class RoomManager : MonoBehaviour
     {
         UpdateDeckUI();
 
+        Debug.Log("Œ»İ‚ÌƒvƒŒƒCƒ„[” : " + ArcaneNetworkManager.Instance.players.Count);
+
+        RefreshPlayerList(ArcaneNetworkManager.Instance.players);
         //AddPlayer("Player1");
     }
 
