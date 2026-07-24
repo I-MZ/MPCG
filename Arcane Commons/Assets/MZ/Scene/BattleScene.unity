@@ -150,7 +150,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   playerName: Player1
   hp: 20
-  hpText: {fileID: 1302998744}
   deck:
   - {fileID: 11400000, guid: 6cdcaca2e47a08446a8a816d8afef74d, type: 2}
   - {fileID: 11400000, guid: 6cdcaca2e47a08446a8a816d8afef74d, type: 2}
@@ -968,7 +967,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   playerName: Player3
   hp: 20
-  hpText: {fileID: 603245101}
   deck:
   - {fileID: 11400000, guid: 37040f99977426149a97586303bbb804, type: 2}
   - {fileID: 11400000, guid: 37040f99977426149a97586303bbb804, type: 2}
@@ -1587,7 +1585,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   playerName: Player2
   hp: 20
-  hpText: {fileID: 1027343734}
   deck:
   - {fileID: 11400000, guid: 2aa7b2b18104ff34b869f5f44bc3ae6b, type: 2}
   - {fileID: 11400000, guid: 2aa7b2b18104ff34b869f5f44bc3ae6b, type: 2}
@@ -2744,7 +2741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1717497119
 RectTransform:
   m_ObjectHideFlags: 0

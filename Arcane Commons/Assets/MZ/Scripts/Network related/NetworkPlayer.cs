@@ -16,20 +16,6 @@ public class NetworkPlayer : NetworkBehaviour
         battlePlayer = GetComponent<Player>();
     }
 
-    //public override void OnStartServer()
-    //{
-    //    base.OnStartServer();
-
-    //    ArcaneNetworkManager.Instance.RegisterPlayer(this);
-    //}
-
-    //public override void OnStopServer()
-    //{
-    //    base.OnStopServer();
-
-    //    ArcaneNetworkManager.Instance.UnregisterPlayer(this);
-    //}
-
     public override void OnStartServer()
     {
         base.OnStartServer();
@@ -65,6 +51,16 @@ public class NetworkPlayer : NetworkBehaviour
     void OnReadyChanged(bool oldValue, bool newValue)
     {
         RefreshRoom();
+
+        if (isLocalPlayer && RoomNetworkUI.Instance != null)
+        {
+            RoomNetworkUI.Instance.UpdateReadyButton(newValue);
+        }
+
+        if (NetworkServer.active)
+        {
+            RoomNetworkUI.Instance.RefreshStartButton();
+        }
     }
 
     void RefreshRoom()
@@ -205,4 +201,19 @@ public class NetworkPlayer : NetworkBehaviour
 //    {
 //        isReady = !isReady;
 //    }
+//}
+
+
+//public override void OnStartServer()
+//{
+//    base.OnStartServer();
+
+//    ArcaneNetworkManager.Instance.RegisterPlayer(this);
+//}
+
+//public override void OnStopServer()
+//{
+//    base.OnStopServer();
+
+//    ArcaneNetworkManager.Instance.UnregisterPlayer(this);
 //}

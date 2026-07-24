@@ -22,6 +22,7 @@ public class RoomManager : MonoBehaviour
         Debug.Log("現在のプレイヤー数 : " + ArcaneNetworkManager.Instance.players.Count);
 
         RefreshPlayerList(ArcaneNetworkManager.Instance.players);
+        //AddPlayer("Player1");
     }
 
     //使用デッキ表示更新

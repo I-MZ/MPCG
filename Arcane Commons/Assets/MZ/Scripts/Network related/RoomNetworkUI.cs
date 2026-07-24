@@ -14,17 +14,19 @@ public class RoomNetworkUI : MonoBehaviour
 
     public TMP_Text readyButtonText;
 
+    public static RoomNetworkUI Instance;
+
     private void Start()
     {
-        if (hostIPText != null &&
-            NetworkSession.Instance != null)
+        if (hostIPText != null &&NetworkSession.Instance != null)
         {
             hostIPText.text = "ホストIP : " + NetworkSession.Instance.hostIP;
         }
 
         if (NetworkServer.active)
         {
-            startButton.SetActive(true);
+            //startButton.SetActive(true);
+            RefreshStartButton();
         }
         else
         {
@@ -32,6 +34,8 @@ public class RoomNetworkUI : MonoBehaviour
         }
 
         RoomManager.Instance.RefreshPlayerList(ArcaneNetworkManager.Instance.players);
+
+        UpdateReadyButton(false);
     }
 
     //ルーム終了
@@ -40,6 +44,48 @@ public class RoomNetworkUI : MonoBehaviour
         NetworkManager.singleton.StopHost();
 
         Debug.Log("Host終了");
+    }
+
+    public void OnClickReady()
+    {
+        NetworkPlayer player =NetworkClient.localPlayer.GetComponent<NetworkPlayer>();
+
+        player.CmdToggleReady();
+    }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public void UpdateReadyButton(bool ready)
+    {
+        if (ready)
+        {
+            readyButtonText.text = "キャンセル";
+        }
+        else
+        {
+            readyButtonText.text = "準備完了";
+        }
+    }
+
+    public void RefreshStartButton()
+    {
+        if (!NetworkServer.active)
+            return;
+
+        startButton.SetActive(ArcaneNetworkManager.Instance.AllPlayersReady());
+    }
+
+    public void OnClickStart()
+    {
+        if (!NetworkServer.active)
+            return;
+
+        Debug.Log("ゲーム開始");
+
+        NetworkManager.singleton.ServerChangeScene("BattleScene");
     }
 }
 

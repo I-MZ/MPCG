@@ -99,6 +99,20 @@ public class ArcaneNetworkManager : NetworkManager
             RoomManager.Instance.RefreshPlayerList(players);
         }
     }
+
+    public bool AllPlayersReady()
+    {
+        if (players.Count == 0)
+            return false;
+
+        foreach (NetworkPlayer player in players)
+        {
+            if (!player.isReady)
+                return false;
+        }
+
+        return true;
+    }
 }
 
 //using Mirror;
