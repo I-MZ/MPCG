@@ -60,7 +60,7 @@ public class BattlePlayerManager : MonoBehaviour
 
             players[i].transform.position = spawnPoints[i].position;
 
-            BattleUIManager.Instance.BindPlayer(players[i], i);
+            //BattleUIManager.Instance.BindPlayer(players[i], i);
         }
     }
 }
