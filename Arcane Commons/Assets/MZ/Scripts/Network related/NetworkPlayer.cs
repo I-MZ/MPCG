@@ -23,8 +23,13 @@ public class NetworkPlayer : NetworkBehaviour
 
         Debug.Log("参加プレイヤー追加");
 
-        // ルーム更新
         RefreshRoom();
+
+        // Player取得
+        //Player battlePlayer = GetComponent<Player>();
+
+        // ←ここでデッキを読み込む
+        battlePlayer.LoadDeck();
 
         // バトルシーンならBattlePlayerManagerへ登録
         if (BattlePlayerManager.Instance != null)
@@ -299,4 +304,20 @@ public class NetworkPlayer : NetworkBehaviour
 //    base.OnStopServer();
 
 //    ArcaneNetworkManager.Instance.UnregisterPlayer(this);
+//}
+
+//public override void OnStartClient()
+//{
+//    base.OnStartClient();
+
+//    Debug.Log("参加プレイヤー追加");
+
+//    // ルーム更新
+//    RefreshRoom();
+
+//    // バトルシーンならBattlePlayerManagerへ登録
+//    if (BattlePlayerManager.Instance != null)
+//    {
+//        BattlePlayerManager.Instance.RegisterPlayer(battlePlayer);
+//    }
 //}

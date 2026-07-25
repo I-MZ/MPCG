@@ -40,8 +40,6 @@ public class Player : MonoBehaviour, IDamageable
         //UpdateHPUI();
         //PlayerUI.Instance.UpdateHPUI(this);
 
-
-
         //敗北
         if (hp <= 0)
         {
@@ -224,13 +222,28 @@ public class Player : MonoBehaviour, IDamageable
     //デッキセーブ
     private void Start()
     {
-        if (DeckDataManager.Instance != null &&
-            DeckDataManager.Instance.savedDecks.Count > 0)
-        {
-            deck = new List<CardData>(DeckDataManager.Instance.savedDecks[0].cards);
+        //if (DeckDataManager.Instance != null &&
+        //    DeckDataManager.Instance.savedDecks.Count > 0)
+        //{
+        //    deck = new List<CardData>(DeckDataManager.Instance.savedDecks[0].cards);
 
-            Debug.Log(playerName + " デッキ読込 : " + deck.Count);
-        }
+        //    Debug.Log(playerName + " デッキ読込 : " + deck.Count);
+        //}
+    }
+
+    public void LoadDeck()
+    {
+        if (DeckDataManager.Instance == null)
+            return;
+
+        if (DeckDataManager.Instance.savedDecks.Count == 0)
+            return;
+
+        deck = new List<CardData>(
+            DeckDataManager.Instance.savedDecks[0].cards
+        );
+
+        Debug.Log(playerName + " デッキ読込 : " + deck.Count);
     }
 }
 
