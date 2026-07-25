@@ -53,11 +53,14 @@ public class ArcaneNetworkManager : NetworkManager
         Debug.Log("===== ServerDisconnect =====");
         base.OnServerDisconnect(conn);
     }
-    //
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         base.OnServerAddPlayer(conn);
+
+        NetworkPlayer player = conn.identity.GetComponent<NetworkPlayer>();
+
+        RegisterPlayer(player);
 
         Debug.Log("プレイヤー参加！");
     }

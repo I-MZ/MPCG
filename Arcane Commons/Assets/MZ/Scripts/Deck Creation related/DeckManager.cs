@@ -14,10 +14,12 @@ public class DeckManager : MonoBehaviour
     public List<CardData> discardPile = new List<CardData>();
 
     [Header("参加プレイヤー")]
-    public List<Player> players = new List<Player>();
+    public List<Player> players = new List<Player>();　//通信用に変更
 
     [Header("カードプレハブ")]
     public GameObject cardPrefab;
+
+    private bool initialized = false;
 
     //手札表示をプレイヤーcs側に任せてみてるから一旦コメントアウト
     //[Header("手札表示場所")]
@@ -29,8 +31,23 @@ public class DeckManager : MonoBehaviour
     }
 
     //ゲーム開始時
-    private void Start()
+    //private void Start()
+    //{
+    //    players = BattlePlayerManager.Instance.players;
+
+    //    CreateBattleDeck();
+    //}
+
+    //ゲーム開始時
+    public void InitializeDeck()
     {
+        if (initialized)
+            return;
+
+        initialized = true;
+
+        players = BattlePlayerManager.Instance.players;
+
         CreateBattleDeck();
     }
 
@@ -41,8 +58,12 @@ public class DeckManager : MonoBehaviour
         battleDeck.Clear();
 
         //全プレイヤーのデッキを追加
-        foreach (Player player in players)
+        foreach (Player player in players) //通信用に変更したけどこっちに戻す
+        //foreach (Player player in BattlePlayerManager.Instance.players)
         {
+            // ← ここだけ追加
+            Debug.Log(player.playerName + " deck = " + player.deck.Count);
+
             foreach (CardData card in player.deck)
             {
                 battleDeck.Add(card);
@@ -54,6 +75,15 @@ public class DeckManager : MonoBehaviour
 
         Debug.Log("共通デッキ作成完了");
         Debug.Log("デッキ枚数 : " + battleDeck.Count);
+
+        //初手5枚配布
+        foreach (Player player in players)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                DrawCard(player);
+            }
+        }
     }
 
     //シャッフル
@@ -95,8 +125,7 @@ public class DeckManager : MonoBehaviour
 
         Debug.Log
         (
-            targetPlayer.playerName + "は" 
-            +drawCard.cardName +"を引いた"
+            targetPlayer.playerName + "は" +drawCard.cardName +"を引いた"
         );
 
         //UI生成
@@ -104,8 +133,7 @@ public class DeckManager : MonoBehaviour
           //Instantiate(cardPrefab, handArea);  //新しいのを作ったから一旦コメントアウト
             Instantiate(cardPrefab, targetPlayer.handArea);
 
-        CardUI cardUI =
-            cardObj.GetComponent<CardUI>();
+        CardUI cardUI =cardObj.GetComponent<CardUI>();
 
         cardUI.Setup(drawCard, targetPlayer);
     }

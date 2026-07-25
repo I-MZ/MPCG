@@ -12,7 +12,7 @@ public class TurnManager : MonoBehaviour
     public bool canUseCard = true;
 
     [Header("参加プレイヤー")]
-    public List<Player> players = new List<Player>();
+    public List<Player> players = new List<Player>();　//通信用に直す
 
     [Header("現在のターンプレイヤー")]
     public Player currentPlayer;
@@ -63,35 +63,80 @@ public class TurnManager : MonoBehaviour
     [HideInInspector]
     public AbilityData selectedAbility;
 
+    private bool initialized = false;
+
     private void Awake()
     {
         Instance = this;
     }
 
-    private void Start()
+    //private void Start()
+    //{
+    //    players = BattlePlayerManager.Instance.players;
+
+    //    //参加者がいない
+    //    if (players.Count == 0)
+    //    {
+    //        Debug.LogError("参加プレイヤーがいません");
+    //        return;
+    //    }
+
+    //    //Noneが混ざっていないか確認
+    //    foreach (Player player in players)
+    //    {
+    //        if (player == null)
+    //        {
+    //            Debug.LogError("Playersリストに None が設定されています");
+    //            return;
+    //        }
+    //    }
+
+    //    currentPlayerIndex = 0;
+    //    currentPlayer = players[currentPlayerIndex];
+
+    //    StartTurn();
+    //}
+
+
+    public void InitializeBattle()
     {
-        //参加者がいない
+        //マルチ用だけど一旦コメアウト
+        if (initialized)
+            return;
+
+        initialized = true;
+
+        players = BattlePlayerManager.Instance.players;
+
         if (players.Count == 0)
         {
             Debug.LogError("参加プレイヤーがいません");
             return;
         }
 
-        //Noneが混ざっていないか確認
-        foreach (Player player in players)
-        {
-            if (player == null)
-            {
-                Debug.LogError("Playersリストに None が設定されています");
-                return;
-            }
-        }
-
         currentPlayerIndex = 0;
+
         currentPlayer = players[currentPlayerIndex];
 
         StartTurn();
     }
+
+    //public void InitializeBattle()
+    //{
+    //    players = BattlePlayerManager.Instance.players;
+
+    //    if (players.Count == 0)
+    //    {
+    //        Debug.LogError("参加プレイヤーがいません");
+    //        return;
+    //    }
+
+    //    currentPlayerIndex = 0;
+
+    //    currentPlayer = players[currentPlayerIndex];
+
+    //    StartTurn();
+    //}
 
     //ターン開始
     public void StartTurn()
@@ -220,3 +265,30 @@ public class TurnManager : MonoBehaviour
         }
     }
 }
+
+//private void Start()
+//{
+//    //参加者がいない
+//    //if (players.Count == 0)　//通信用に
+//    if (BattlePlayerManager.Instance.players.Count == 0)
+//    {
+//        Debug.LogError("参加プレイヤーがいません");
+//        return;
+//    }
+
+//    //Noneが混ざっていないか確認
+//    foreach (Player player in players)
+//    {
+//        if (player == null)
+//        {
+//            Debug.LogError("Playersリストに None が設定されています");
+//            return;
+//        }
+//    }
+
+//    currentPlayerIndex = 0;
+//    //currentPlayer = players[currentPlayerIndex];
+//    currentPlayer = BattlePlayerManager.Instance.players[currentPlayerIndex];
+
+//    StartTurn();
+//}

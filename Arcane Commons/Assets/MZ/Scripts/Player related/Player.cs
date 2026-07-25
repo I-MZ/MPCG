@@ -165,13 +165,13 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         //武器攻撃なら守護チェック
-        if (TurnManager.Instance.selectedCard.cardType== CardType.Weapon)
+        if (TurnManager.Instance.selectedCard.cardType == CardType.Weapon)
         {
             foreach (Minion minion in minions)
             {
-                if (minion.HasAbility( AbilityTrigger.OnPlay,AbilityEffect.Guard))
+                if (minion.HasAbility(AbilityTrigger.OnPlay, AbilityEffect.Guard))
                 {
-                    Debug.Log( "守護がいるためプレイヤーを攻撃できません");
+                    Debug.Log("守護がいるためプレイヤーを攻撃できません");
 
                     return;
                 }
@@ -206,9 +206,9 @@ public class Player : MonoBehaviour, IDamageable
             TurnManager.Instance.selectedCardUI.gameObject
         );
 
-        Debug.Log("捨て札枚数 : " +DeckManager.Instance.discardPile.Count);
+        Debug.Log("捨て札枚数 : " + DeckManager.Instance.discardPile.Count);
 
-        Debug.Log(TurnManager.Instance.selectedCard.cardName +" を捨て札へ送った");
+        Debug.Log(TurnManager.Instance.selectedCard.cardName + " を捨て札へ送った");
 
         //対象選択終了
         TurnManager.Instance.isSelectingTarget = false;
@@ -232,6 +232,7 @@ public class Player : MonoBehaviour, IDamageable
             Debug.Log(playerName + " デッキ読込 : " + deck.Count);
         }
     }
+}
 
     //エラー回避のためいったん即席版に
     //デッキセーブ
@@ -267,4 +268,4 @@ public class Player : MonoBehaviour, IDamageable
     //            );
     //        }
     //    }
-}
+//}

@@ -54,33 +54,34 @@ public class DeckSelectItem : MonoBehaviour
             SceneManager.LoadScene("DeckBuildScene");
         }
     }
-
-    //public void OpenDeck()
-    //{
-    //    DeckDataManager.Instance.LoadDeck(deckIndex);
-
-    //    if (DeckDataManager.Instance.deckSelectMode == DeckSelectMode.SelectForRoom)
-    //    {
-    //        SceneManager.LoadScene("RoomScene");
-    //    }
-    //    else
-    //    {
-    //        SceneManager.LoadScene("DeckBuildScene");
-    //    }
-    //}
-    //public void OpenDeck()
-    //{
-    //    DeckDataManager.Instance.LoadDeck(deckIndex);
-
-    //    if (DeckDataManager.Instance.isSelectingDeckForRoom)
-    //    {
-    //        DeckDataManager.Instance.isSelectingDeckForRoom = false;
-
-    //        SceneManager.LoadScene("RoomScene");
-    //    }
-    //    else
-    //    {
-    //        SceneManager.LoadScene("DeckBuildScene");
-    //    }
-    //}
 }
+
+
+//public void OpenDeck()
+//{
+//    DeckDataManager.Instance.LoadDeck(deckIndex);
+
+//    if (DeckDataManager.Instance.deckSelectMode == DeckSelectMode.SelectForRoom)
+//    {
+//        SceneManager.LoadScene("RoomScene");
+//    }
+//    else
+//    {
+//        SceneManager.LoadScene("DeckBuildScene");
+//    }
+//}
+//public void OpenDeck()
+//{
+//    DeckDataManager.Instance.LoadDeck(deckIndex);
+
+//    if (DeckDataManager.Instance.isSelectingDeckForRoom)
+//    {
+//        DeckDataManager.Instance.isSelectingDeckForRoom = false;
+
+//        SceneManager.LoadScene("RoomScene");
+//    }
+//    else
+//    {
+//        SceneManager.LoadScene("DeckBuildScene");
+//    }
+//}

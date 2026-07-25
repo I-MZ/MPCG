@@ -16,31 +16,32 @@ public class NetworkPlayer : NetworkBehaviour
         battlePlayer = GetComponent<Player>();
     }
 
-    public override void OnStartServer()
-    {
-        base.OnStartServer();
-
-        Debug.Log("===== OnStartServer =====");
-
-        ArcaneNetworkManager.Instance.RegisterPlayer(this);
-    }
-
-    public override void OnStopServer()
-    {
-        base.OnStopServer();
-
-        Debug.Log("===== OnStopServer =====");
-
-        ArcaneNetworkManager.Instance.UnregisterPlayer(this);
-    }
-
+    // クライアント参加
     public override void OnStartClient()
     {
         base.OnStartClient();
 
         Debug.Log("参加プレイヤー追加");
 
+        // ルーム更新
         RefreshRoom();
+
+        // バトルシーンならBattlePlayerManagerへ登録
+        if (BattlePlayerManager.Instance != null)
+        {
+            BattlePlayerManager.Instance.RegisterPlayer(battlePlayer);
+        }
+    }
+
+    // クライアント退出
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+
+        if (BattlePlayerManager.Instance != null)
+        {
+            BattlePlayerManager.Instance.UnregisterPlayer(battlePlayer);
+        }
     }
 
     void OnPlayerNameChanged(string oldName, string newName)
@@ -57,7 +58,7 @@ public class NetworkPlayer : NetworkBehaviour
             RoomNetworkUI.Instance.UpdateReadyButton(newValue);
         }
 
-        if (NetworkServer.active)
+        if (NetworkServer.active && RoomNetworkUI.Instance != null)
         {
             RoomNetworkUI.Instance.RefreshStartButton();
         }
@@ -78,6 +79,88 @@ public class NetworkPlayer : NetworkBehaviour
         isReady = !isReady;
     }
 }
+
+//public class NetworkPlayer : NetworkBehaviour
+//{
+//    private Player battlePlayer;
+
+//    [SyncVar(hook = nameof(OnPlayerNameChanged))]
+//    public string playerName = "Player";
+
+//    [SyncVar(hook = nameof(OnReadyChanged))]
+//    public bool isReady = false;
+
+//    private void Awake()
+//    {
+//        battlePlayer = GetComponent<Player>();
+//    }
+
+//    //public override void OnStartServer()
+//    //{
+//    //    base.OnStartServer();
+
+//    //    Debug.Log("===== OnStartServer =====");
+
+//    //    ArcaneNetworkManager.Instance.RegisterPlayer(this);
+//    //}
+
+//    //public override void OnStopServer()
+//    //{
+//    //    base.OnStopServer();
+
+//    //    Debug.Log("===== OnStopServer =====");
+
+//    //    ArcaneNetworkManager.Instance.UnregisterPlayer(this);
+//    //}
+
+//    public override void OnStartClient()
+//    {
+//        base.OnStartClient();
+
+//        Debug.Log("参加プレイヤー追加");
+
+//        RefreshRoom();
+
+//        Player battlePlayer = GetComponent<Player>();
+
+//        BattlePlayerManager.Instance.RegisterPlayer(battlePlayer);
+//    }
+
+//    void OnPlayerNameChanged(string oldName, string newName)
+//    {
+//        RefreshRoom();
+//    }
+
+//    void OnReadyChanged(bool oldValue, bool newValue)
+//    {
+//        RefreshRoom();
+
+//        if (isLocalPlayer && RoomNetworkUI.Instance != null)
+//        {
+//            RoomNetworkUI.Instance.UpdateReadyButton(newValue);
+//        }
+
+//        if (NetworkServer.active)
+//        {
+//            RoomNetworkUI.Instance.RefreshStartButton();
+//        }
+//    }
+
+//    void RefreshRoom()
+//    {
+//        if (RoomManager.Instance == null)
+//            return;
+
+//        RoomManager.Instance.RefreshPlayerList(
+//            ArcaneNetworkManager.Instance.players);
+//    }
+
+//    [Command]
+//    public void CmdToggleReady()
+//    {
+//        isReady = !isReady;
+//    }
+//}
 
 
 //using Mirror;
