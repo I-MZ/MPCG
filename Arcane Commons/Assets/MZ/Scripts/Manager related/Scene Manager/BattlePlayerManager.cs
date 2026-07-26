@@ -28,11 +28,28 @@ public class BattlePlayerManager : MonoBehaviour
         Debug.Log($"現在人数 : {players.Count}");
 
         ArrangePlayers();
-
-        if (players.Count >= 1)//一人用の動作確認が終わったら2にする
+        if (players.Count >= 1)
         {
-            DeckManager.Instance.InitializeDeck();
+            Player localPlayer = null;
 
+            foreach (Player p in players)
+            {
+                NetworkPlayer np = p.GetComponent<NetworkPlayer>();
+
+                if (np != null && np.isLocalPlayer)
+                {
+                    localPlayer = p;
+                    break;
+                }
+            }
+
+            if (localPlayer != null)
+            {
+                BattleUIManager.Instance.InitializeUI(localPlayer);
+                BattleUIManager.Instance.CreateEnemyList(players);
+            }
+
+            DeckManager.Instance.InitializeDeck();
             TurnManager.Instance.InitializeBattle();
         }
     }
@@ -63,4 +80,6 @@ public class BattlePlayerManager : MonoBehaviour
             //BattleUIManager.Instance.BindPlayer(players[i], i);
         }
     }
+
+
 }

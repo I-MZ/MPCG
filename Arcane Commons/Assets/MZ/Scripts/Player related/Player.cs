@@ -37,6 +37,9 @@ public class Player : MonoBehaviour, IDamageable
 
         Debug.Log(playerName + " HP : " + hp);
 
+        BattleUIManager.Instance.RefreshSelfHP();
+        BattleUIManager.Instance.RefreshEnemyList();
+
         //UpdateHPUI();
         //PlayerUI.Instance.UpdateHPUI(this);
 

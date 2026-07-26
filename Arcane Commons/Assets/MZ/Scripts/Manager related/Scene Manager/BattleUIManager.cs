@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -5,13 +6,14 @@ public class BattleUIManager : MonoBehaviour
 {
     public static BattleUIManager Instance;
 
+    private Player selfPlayer;
+    private Player viewingEnemy;
+
     [System.Serializable]
     public class BattleArea
     {
         public TMP_Text hpText;
-
         public Transform handArea;
-
         public Transform minionArea;
     }
 
@@ -27,6 +29,118 @@ public class BattleUIManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void InitializeUI(Player self)
+    {
+        selfPlayer = self;
+
+        self.handArea = selfUI.handArea;
+        self.minionArea = selfUI.minionArea;
+
+        selfUI.hpText.text =
+            $"{self.playerName}\nHP : {self.hp}";
+    }
+
+    public void CreateEnemyList(List<Player> players)
+    {
+        int uiIndex = 0;
+
+        foreach (Player player in players)
+        {
+            if (player == selfPlayer)
+                continue;
+
+            enemyHPUI[uiIndex].gameObject.SetActive(true);
+
+            enemyHPUI[uiIndex].Setup(player);
+
+            int capture = uiIndex;
+
+            enemyHPUI[uiIndex].button.onClick.RemoveAllListeners();
+
+            enemyHPUI[uiIndex].button.onClick.AddListener(() =>
+            {
+                ShowEnemy(enemyHPUI[capture].player);
+            });
+
+            uiIndex++;
+        }
+
+        for (; uiIndex < enemyHPUI.Length; uiIndex++)
+        {
+            enemyHPUI[uiIndex].gameObject.SetActive(false);
+        }
+
+        if (players.Count > 1)
+        {
+            foreach (Player player in players)
+            {
+                if (player != selfPlayer)
+                {
+                    ShowEnemy(player);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void ShowEnemy(Player enemy)
+    {
+        // 前に表示していた相手を元へ戻す
+        if (viewingEnemy != null)
+        {
+            MoveChildren(enemyUI.handArea, viewingEnemy.handArea);
+            MoveChildren(enemyUI.minionArea, viewingEnemy.minionArea);
+        }
+
+        // 今見る相手を保存
+        viewingEnemy = enemy;
+
+        //enemy.handArea = enemyUI.handArea;
+        //enemy.minionArea = enemyUI.minionArea;
+
+        //新しい相手をEnemyUIへ表示
+        MoveChildren(enemy.handArea, enemyUI.handArea);
+        MoveChildren(enemy.minionArea, enemyUI.minionArea);
+
+        //マーク更新
+        foreach (EnemyHPUI ui in enemyHPUI)
+        {
+            if (!ui.gameObject.activeSelf)
+                continue;
+
+            ui.SetSelected(ui.player == enemy);
+        }
+    }
+
+    public void RefreshSelfHP()
+    {
+        if (selfPlayer == null)
+            return;
+
+        selfUI.hpText.text =
+            $"{selfPlayer.playerName}\nHP : {selfPlayer.hp}";
+    }
+
+    public void RefreshEnemyList()
+    {
+        foreach (EnemyHPUI ui in enemyHPUI)
+        {
+            if (!ui.gameObject.activeSelf)
+                continue;
+
+            ui.Refresh();
+        }
+    }
+
+    //カードUIを移動する関数
+    private void MoveChildren(Transform from, Transform to)
+    {
+        while (from.childCount > 0)
+        {
+            from.GetChild(0).SetParent(to, false);
+        }
     }
 }
 
