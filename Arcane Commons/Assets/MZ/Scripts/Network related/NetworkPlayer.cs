@@ -29,7 +29,7 @@ public class NetworkPlayer : NetworkBehaviour
         //Player battlePlayer = GetComponent<Player>();
 
         // ←ここでデッキを読み込む
-        battlePlayer.LoadDeck();
+        //battlePlayer.LoadDeck(); //BattleInitializerがやるからコメントアウト
 
         // バトルシーンならBattlePlayerManagerへ登録
         if (BattlePlayerManager.Instance != null)

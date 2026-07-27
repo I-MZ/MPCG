@@ -18,6 +18,9 @@ public class Player : MonoBehaviour, IDamageable
     [Header("所持デッキ")]
     public List<CardData> deck = new List<CardData>();
 
+    [Header("手札UI")]
+    public Transform handArea;
+
     [Header("手札")]
     public List<CardData> hand = new List<CardData>();
 
@@ -26,9 +29,6 @@ public class Player : MonoBehaviour, IDamageable
 
     [Header("場の使い魔")]
     public List<Minion> minions = new List<Minion>();
-
-    [Header("手札UI")]
-    public Transform handArea;
 
     //ダメージを受ける
     public void TakeDamage(int damage)//koko

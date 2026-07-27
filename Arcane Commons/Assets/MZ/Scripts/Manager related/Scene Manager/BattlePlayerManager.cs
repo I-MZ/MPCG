@@ -28,29 +28,23 @@ public class BattlePlayerManager : MonoBehaviour
         Debug.Log($"Œ»Ýl” : {players.Count}");
 
         ArrangePlayers();
-        if (players.Count >= 1)
+        Player localPlayer = null;
+
+        foreach (Player p in players)
         {
-            Player localPlayer = null;
+            NetworkPlayer np = p.GetComponent<NetworkPlayer>();
 
-            foreach (Player p in players)
+            if (np != null && np.isLocalPlayer)
             {
-                NetworkPlayer np = p.GetComponent<NetworkPlayer>();
-
-                if (np != null && np.isLocalPlayer)
-                {
-                    localPlayer = p;
-                    break;
-                }
+                localPlayer = p;
+                break;
             }
+        }
 
-            if (localPlayer != null)
-            {
-                BattleUIManager.Instance.InitializeUI(localPlayer);
-                BattleUIManager.Instance.CreateEnemyList(players);
-            }
-
-            DeckManager.Instance.InitializeDeck();
-            TurnManager.Instance.InitializeBattle();
+        if (localPlayer != null)
+        {
+            BattleUIManager.Instance.InitializeUI(localPlayer);
+            BattleUIManager.Instance.CreateEnemyList(players);
         }
     }
 

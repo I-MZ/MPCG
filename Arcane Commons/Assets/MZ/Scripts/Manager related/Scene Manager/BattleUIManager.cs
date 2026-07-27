@@ -87,24 +87,10 @@ public class BattleUIManager : MonoBehaviour
 
     public void ShowEnemy(Player enemy)
     {
-        // 前に表示していた相手を元へ戻す
-        if (viewingEnemy != null)
-        {
-            MoveChildren(enemyUI.handArea, viewingEnemy.handArea);
-            MoveChildren(enemyUI.minionArea, viewingEnemy.minionArea);
-        }
-
-        // 今見る相手を保存
         viewingEnemy = enemy;
 
-        //enemy.handArea = enemyUI.handArea;
-        //enemy.minionArea = enemyUI.minionArea;
+        RefreshEnemyHand();
 
-        //新しい相手をEnemyUIへ表示
-        MoveChildren(enemy.handArea, enemyUI.handArea);
-        MoveChildren(enemy.minionArea, enemyUI.minionArea);
-
-        //マーク更新
         foreach (EnemyHPUI ui in enemyHPUI)
         {
             if (!ui.gameObject.activeSelf)
@@ -134,12 +120,45 @@ public class BattleUIManager : MonoBehaviour
         }
     }
 
-    //カードUIを移動する関数
-    private void MoveChildren(Transform from, Transform to)
+    public void RefreshSelfHand()
     {
-        while (from.childCount > 0)
+        if (selfPlayer == null)
+            return;
+
+        foreach (Transform child in selfUI.handArea)
+            Destroy(child.gameObject);
+
+        foreach (CardData card in selfPlayer.hand)
         {
-            from.GetChild(0).SetParent(to, false);
+            GameObject obj =
+                Instantiate(
+                    DeckManager.Instance.cardPrefab,
+                    selfUI.handArea);
+
+            CardUI ui = obj.GetComponent<CardUI>();
+
+            ui.Setup(card, selfPlayer);
+        }
+    }
+
+    public void RefreshEnemyHand()
+    {
+        if (viewingEnemy == null)
+            return;
+
+        foreach (Transform child in enemyUI.handArea)
+            Destroy(child.gameObject);
+
+        foreach (CardData card in viewingEnemy.hand)
+        {
+            GameObject obj =
+                Instantiate(
+                    DeckManager.Instance.cardPrefab,
+                    enemyUI.handArea);
+
+            CardUI ui = obj.GetComponent<CardUI>();
+
+            ui.Setup(card, viewingEnemy);
         }
     }
 }
@@ -219,5 +238,44 @@ public class BattleUIManager : MonoBehaviour
 //    private void Start()
 //    {
 //        ShowOpponent(1);
+//    }
+//}
+
+
+//public void ShowEnemy(Player enemy)
+//{
+//    // 前に表示していた相手を元へ戻す
+//    if (viewingEnemy != null)
+//    {
+//        MoveChildren(enemyUI.handArea, viewingEnemy.handArea);
+//        MoveChildren(enemyUI.minionArea, viewingEnemy.minionArea);
+//    }
+
+//    // 今見る相手を保存
+//    viewingEnemy = enemy;
+
+//    //enemy.handArea = enemyUI.handArea;
+//    //enemy.minionArea = enemyUI.minionArea;
+
+//    //新しい相手をEnemyUIへ表示
+//    MoveChildren(enemy.handArea, enemyUI.handArea);
+//    MoveChildren(enemy.minionArea, enemyUI.minionArea);
+
+//    //マーク更新
+//    foreach (EnemyHPUI ui in enemyHPUI)
+//    {
+//        if (!ui.gameObject.activeSelf)
+//            continue;
+
+//        ui.SetSelected(ui.player == enemy);
+//    }
+//}
+
+//カードUIを移動する関数
+//private void MoveChildren(Transform from, Transform to)
+//{
+//    while (from.childCount > 0)
+//    {
+//        from.GetChild(0).SetParent(to, false);
 //    }
 //}

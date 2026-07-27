@@ -123,18 +123,16 @@ public class DeckManager : MonoBehaviour
         //デッキから削除
         battleDeck.RemoveAt(0);
 
-        Debug.Log
-        (
-            targetPlayer.playerName + "は" +drawCard.cardName +"を引いた"
+        Debug.Log(
+            targetPlayer.playerName + " は " +
+            drawCard.cardName + " を引いた"
         );
 
-        //UI生成
-        GameObject cardObj =
-          //Instantiate(cardPrefab, handArea);  //新しいのを作ったから一旦コメントアウト
-            Instantiate(cardPrefab, targetPlayer.handArea);
-
-        CardUI cardUI =cardObj.GetComponent<CardUI>();
-
-        cardUI.Setup(drawCard, targetPlayer);
+        //UI更新
+        if (BattleUIManager.Instance != null)
+        {
+            BattleUIManager.Instance.RefreshSelfHand();
+            BattleUIManager.Instance.RefreshEnemyHand();
+        }
     }
 }
