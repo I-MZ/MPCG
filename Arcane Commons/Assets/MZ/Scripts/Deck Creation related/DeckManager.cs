@@ -41,6 +41,10 @@ public class DeckManager : MonoBehaviour
     //ゲーム開始時
     public void InitializeDeck()
     {
+        Debug.Log("InitializeDeck");
+
+        Debug.Log("players = " + players.Count);
+
         if (initialized)
             return;
 
@@ -54,6 +58,8 @@ public class DeckManager : MonoBehaviour
     //共通デッキ作成
     public void CreateBattleDeck()
     {
+        Debug.Log("CreateBattleDeck");
+
         //一旦空にする
         battleDeck.Clear();
 

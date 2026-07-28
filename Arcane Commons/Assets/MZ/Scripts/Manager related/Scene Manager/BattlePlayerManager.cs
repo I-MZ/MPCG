@@ -11,6 +11,8 @@ public class BattlePlayerManager : MonoBehaviour
     [Header("参加プレイヤー")]
     public List<Player> players = new();
 
+    private bool battleInitialized = false;
+
     private void Awake()
     {
         Instance = this;
@@ -28,23 +30,57 @@ public class BattlePlayerManager : MonoBehaviour
         Debug.Log($"現在人数 : {players.Count}");
 
         ArrangePlayers();
+
+        Debug.Log("===== Manager確認 =====");
+        Debug.Log("<1>");
+        Debug.Log("DeckManager = " + DeckManager.Instance);
+        Debug.Log("TurnManager = " + TurnManager.Instance);
+        Debug.Log("BattleUIManager = " + BattleUIManager.Instance);
+        Debug.Log("<2>");
+
         Player localPlayer = null;
+
+        Debug.Log("===== Player一覧 =====");
 
         foreach (Player p in players)
         {
             NetworkPlayer np = p.GetComponent<NetworkPlayer>();
 
+            Debug.Log( $"Player = {p.playerName}  Local = {(np != null ? np.isLocalPlayer.ToString() : "NetworkPlayer無し")}");
+
             if (np != null && np.isLocalPlayer)
             {
                 localPlayer = p;
-                break;
             }
         }
 
         if (localPlayer != null)
         {
+            Debug.Log("ローカルプレイヤー発見 : " + localPlayer.playerName);
+
             BattleUIManager.Instance.InitializeUI(localPlayer);
             BattleUIManager.Instance.CreateEnemyList(players);
+        }
+        else
+        {
+            Debug.LogWarning("ローカルプレイヤーが見つかりません");
+        }
+
+        // 確認用（後でBattleInitializerへ移動予定）
+        if (!battleInitialized &&
+            players.Count >= 2 &&
+            DeckManager.Instance != null &&
+            TurnManager.Instance != null)
+        {
+            battleInitialized = true;
+
+            Debug.Log("===== バトル初期化開始 =====");
+
+            DeckManager.Instance.InitializeDeck();
+
+            TurnManager.Instance.InitializeBattle();
+
+            Debug.Log("===== バトル初期化終了 =====");
         }
     }
 
